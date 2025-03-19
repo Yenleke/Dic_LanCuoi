@@ -1,0 +1,11 @@
+D:\Dic_LanCuoi\bin\Debug\Dic_AppTest.exe.config
+D:\Dic_LanCuoi\bin\Debug\Dic_AppTest.exe
+D:\Dic_LanCuoi\bin\Debug\Dic_AppTest.pdb
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.csproj.AssemblyReference.cache
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.Form1.resources
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.Properties.Resources.resources
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.csproj.GenerateResource.cache
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.csproj.CoreCompileInputs.cache
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.exe
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.pdb
+D:\Dic_LanCuoi\obj\Debug\Dic_AppTest.Panel.resources
