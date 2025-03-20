@@ -1,0 +1,6 @@
+bin/
+obj/
+Debug/
+!Images/
+!Images/*.png
+!Images/*.jpg
