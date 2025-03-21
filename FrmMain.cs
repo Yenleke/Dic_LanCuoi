@@ -29,7 +29,7 @@ namespace Dic_AppTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            MessageBox.Show($"Đường dẫn file: {Path.GetFullPath(excelpath)}");
+           
             try
             {
                
@@ -71,8 +71,18 @@ namespace Dic_AppTest
                             Console.WriteLine($"Lỗi dòng {i}: {ex.Message}");
                         }
                     }
+                    txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;//Gợi ý và tự động hoàn thành.
+                    txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;//: Dùng danh sách tùy chỉnh.
 
-                    MessageBox.Show($"Số lượng từ trong danh sách: {diction.Count}");
+                    AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+
+                    foreach (var word in diction)
+                    {
+                        autoCompleteCollection.Add(word.English); // Thêm từ vựng vào gợi ý
+                    }
+
+                    txtNhap.AutoCompleteCustomSource = autoCompleteCollection; // Gán danh sách 
+
                 }
             }
             catch (Exception ex)
@@ -107,7 +117,8 @@ namespace Dic_AppTest
 
         private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            Sub_AddWord addWord = new Sub_AddWord();
+            addWord.Show();
         }
 
         private void btSearch_Click_1(object sender, EventArgs e)
@@ -151,5 +162,16 @@ namespace Dic_AppTest
                 }
             }
         }
+
+        private void loaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Ẩn form hiện tại
+            FrmMain newForm = new FrmMain(); // Tạo form mới
+            newForm.Show(); // Hiển thị form mới
+         
+
+        }
+
+       
     }
 }
