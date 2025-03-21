@@ -103,8 +103,7 @@ namespace Dic_AppTest
 
         private void btSwitch_Click_1(object sender, EventArgs e)
         {
-            isAnhViet= !isAnhViet;
-            btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
+           
         }
 
         private void btSearch_Click(object sender, EventArgs e)
@@ -162,7 +161,6 @@ namespace Dic_AppTest
                 }
             }
         }
-
         private void loaToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide(); // Ẩn form hiện tại
@@ -172,6 +170,18 @@ namespace Dic_AppTest
 
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+          
+
+
+
+        }
+
+        private void btSwitch_Click(object sender, EventArgs e)
+        {
+            isAnhViet = !isAnhViet;
+            btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
+        }
     }
 }
