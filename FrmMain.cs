@@ -29,10 +29,9 @@ namespace Dic_AppTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
             try
             {
-               
+
                 using (var package = new ExcelPackage(new FileInfo(Path.GetFullPath(excelpath))))
                 {
                     ExcelWorksheet worksheet = package.Workbook.Worksheets.FirstOrDefault();
@@ -71,26 +70,28 @@ namespace Dic_AppTest
                             Console.WriteLine($"Lỗi dòng {i}: {ex.Message}");
                         }
                     }
-                    txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;//Gợi ý và tự động hoàn thành.
-                    txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;//: Dùng danh sách tùy chỉnh.
-
-                    AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
-
-                    foreach (var word in diction)
-                    {
-                        autoCompleteCollection.Add(word.English); // Thêm từ vựng vào gợi ý
-                    }
-
-                    txtNhap.AutoCompleteCustomSource = autoCompleteCollection; // Gán danh sách 
-
                 }
+
+                SetupAutoComplete();
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi đọc file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void SetupAutoComplete()
+        {
+            txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
+            AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+            foreach (var word in diction)
+            {
+                autoCompleteCollection.Add(word.English);
+            }
+
+            txtNhap.AutoCompleteCustomSource = autoCompleteCollection;
+        }
         private void hienThi()
         {
             LbTiengAnh.Visible = true;
@@ -122,6 +123,20 @@ namespace Dic_AppTest
         }
 
         private void btSearch_Click_1(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void loaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide(); // Ẩn form hiện tại
+            FrmMain newForm = new FrmMain(); // Tạo form mới
+            newForm.Show(); // Hiển thị form mới
+         
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             string searchText = txtNhap.Text.Trim().ToLower();
             if (isAnhViet)
@@ -162,16 +177,5 @@ namespace Dic_AppTest
                 }
             }
         }
-
-        private void loaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide(); // Ẩn form hiện tại
-            FrmMain newForm = new FrmMain(); // Tạo form mới
-            newForm.Show(); // Hiển thị form mới
-         
-
-        }
-
-       
     }
 }
