@@ -46,9 +46,11 @@
             this.xóaTừToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btSearch = new System.Windows.Forms.Button();
             this.panel2 = new Dic_AppTest.Panel();
             this.panel1 = new Dic_AppTest.Panel();
-            this.btSearch = new System.Windows.Forms.Button();
+            this.loaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,6 +189,7 @@
             this.thêmTừToolStripMenuItem,
             this.sửaToolStripMenuItem,
             this.xóaTừToolStripMenuItem,
+            this.loaToolStripMenuItem,
             this.toolStripSeparator1,
             this.importFileToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
@@ -196,32 +199,46 @@
             // thêmTừToolStripMenuItem
             // 
             this.thêmTừToolStripMenuItem.Name = "thêmTừToolStripMenuItem";
-            this.thêmTừToolStripMenuItem.Size = new System.Drawing.Size(258, 44);
+            this.thêmTừToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.thêmTừToolStripMenuItem.Text = "Thêm Từ";
             this.thêmTừToolStripMenuItem.Click += new System.EventHandler(this.thêmTừToolStripMenuItem_Click);
             // 
             // sửaToolStripMenuItem
             // 
             this.sửaToolStripMenuItem.Name = "sửaToolStripMenuItem";
-            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(258, 44);
+            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.sửaToolStripMenuItem.Text = "Sửa Từ";
             // 
             // xóaTừToolStripMenuItem
             // 
             this.xóaTừToolStripMenuItem.Name = "xóaTừToolStripMenuItem";
-            this.xóaTừToolStripMenuItem.Size = new System.Drawing.Size(258, 44);
+            this.xóaTừToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.xóaTừToolStripMenuItem.Text = "Xóa Từ";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(255, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(356, 6);
             // 
             // importFileToolStripMenuItem
             // 
             this.importFileToolStripMenuItem.Name = "importFileToolStripMenuItem";
-            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(258, 44);
+            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
             this.importFileToolStripMenuItem.Text = "Import file";
+            // 
+            // btSearch
+            // 
+            this.btSearch.BackColor = System.Drawing.SystemColors.Window;
+            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btSearch.FlatAppearance.BorderSize = 0;
+            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSearch.Location = new System.Drawing.Point(1092, 180);
+            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(132, 65);
+            this.btSearch.TabIndex = 23;
+            this.btSearch.UseVisualStyleBackColor = false;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
             // 
             // panel2
             // 
@@ -244,26 +261,33 @@
             this.panel1.Size = new System.Drawing.Size(1203, 76);
             this.panel1.TabIndex = 11;
             // 
-            // btSearch
+            // loaToolStripMenuItem
             // 
-            this.btSearch.BackColor = System.Drawing.SystemColors.Window;
-            this.btSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSearch.BackgroundImage")));
-            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btSearch.FlatAppearance.BorderSize = 0;
-            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSearch.Location = new System.Drawing.Point(1092, 180);
-            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(132, 65);
-            this.btSearch.TabIndex = 23;
-            this.btSearch.UseVisualStyleBackColor = false;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
+            this.loaToolStripMenuItem.Name = "loaToolStripMenuItem";
+            this.loaToolStripMenuItem.Size = new System.Drawing.Size(359, 44);
+            this.loaToolStripMenuItem.Text = "Load";
+            this.loaToolStripMenuItem.Click += new System.EventHandler(this.loaToolStripMenuItem_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Window;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(1095, 173);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 76);
+            this.button1.TabIndex = 24;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1252, 697);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btSearch);
             this.Controls.Add(this.lbViDu2);
             this.Controls.Add(this.lbViDu1);
@@ -317,6 +341,8 @@
         private System.Windows.Forms.ToolStripMenuItem importFileToolStripMenuItem;
         private Panel panel2;
         private System.Windows.Forms.Button btSearch;
+        private System.Windows.Forms.ToolStripMenuItem loaToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
     }
 }
 
