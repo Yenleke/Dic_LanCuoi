@@ -151,7 +151,6 @@ namespace Dic_AppTest
                     int rowCount = worksheet.Dimension.End.Row;
                     int colCount = worksheet.Dimension.End.Column;
 
-                    MessageBox.Show($"File có {rowCount} dòng và {colCount} cột.", "Debug", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 
 
@@ -178,8 +177,7 @@ namespace Dic_AppTest
                         }
                     }
                 }
-
-                MessageBox.Show($"Số từ đã import: {diction.Count}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+              
             }
             catch (Exception ex)
             {
@@ -221,7 +219,7 @@ namespace Dic_AppTest
 
                 // Cập nhật giao diện ngay lập tức
                 SetupAutoComplete();
-                UpdateUI();
+              
             }
             catch (Exception ex)
             {
@@ -234,11 +232,6 @@ namespace Dic_AppTest
             }
         }
 
-        private void UpdateUI()
-        {
-            MessageBox.Show($"Số từ đã import: {diction.Count}");
-        }
-
-        
+     
     }
 }

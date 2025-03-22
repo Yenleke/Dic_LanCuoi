@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNhap = new System.Windows.Forms.TextBox();
@@ -55,21 +54,22 @@
             // 
             // label2
             // 
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(0, 40);
+            this.label2.Location = new System.Drawing.Point(0, 24);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(1252, 122);
+            this.label2.Size = new System.Drawing.Size(1275, 163);
             this.label2.TabIndex = 7;
             this.label2.Text = "DICTIONARY";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.BackColor = System.Drawing.Color.LightBlue;
-            this.label3.Location = new System.Drawing.Point(0, 163);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Location = new System.Drawing.Point(0, 187);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(1275, 125);
@@ -80,10 +80,10 @@
             this.txtNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhap.Location = new System.Drawing.Point(43, 201);
+            this.txtNhap.Location = new System.Drawing.Point(35, 236);
             this.txtNhap.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtNhap.Name = "txtNhap";
-            this.txtNhap.Size = new System.Drawing.Size(956, 38);
+            this.txtNhap.Size = new System.Drawing.Size(932, 30);
             this.txtNhap.TabIndex = 12;
             // 
             // btSwitch
@@ -91,7 +91,7 @@
             this.btSwitch.AutoSize = true;
             this.btSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btSwitch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btSwitch.Location = new System.Drawing.Point(975, 184);
+            this.btSwitch.Location = new System.Drawing.Point(975, 217);
             this.btSwitch.Name = "btSwitch";
             this.btSwitch.Size = new System.Drawing.Size(108, 56);
             this.btSwitch.TabIndex = 13;
@@ -103,9 +103,9 @@
             this.LbTiengAnh.AutoSize = true;
             this.LbTiengAnh.BackColor = System.Drawing.Color.LightBlue;
             this.LbTiengAnh.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbTiengAnh.Location = new System.Drawing.Point(134, 297);
+            this.LbTiengAnh.Location = new System.Drawing.Point(134, 337);
             this.LbTiengAnh.Name = "LbTiengAnh";
-            this.LbTiengAnh.Size = new System.Drawing.Size(298, 91);
+            this.LbTiengAnh.Size = new System.Drawing.Size(243, 73);
             this.LbTiengAnh.TabIndex = 16;
             this.LbTiengAnh.Text = "English";
             this.LbTiengAnh.Visible = false;
@@ -116,9 +116,9 @@
             this.lbNghia.BackColor = System.Drawing.Color.LightBlue;
             this.lbNghia.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNghia.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.lbNghia.Location = new System.Drawing.Point(142, 476);
+            this.lbNghia.Location = new System.Drawing.Point(140, 510);
             this.lbNghia.Name = "lbNghia";
-            this.lbNghia.Size = new System.Drawing.Size(136, 52);
+            this.lbNghia.Size = new System.Drawing.Size(107, 39);
             this.lbNghia.TabIndex = 17;
             this.lbNghia.Text = "Nghĩa";
             this.lbNghia.Visible = false;
@@ -128,9 +128,9 @@
             this.lbPhienAm.AutoSize = true;
             this.lbPhienAm.BackColor = System.Drawing.Color.LightBlue;
             this.lbPhienAm.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPhienAm.Location = new System.Drawing.Point(189, 368);
+            this.lbPhienAm.Location = new System.Drawing.Point(189, 411);
             this.lbPhienAm.Name = "lbPhienAm";
-            this.lbPhienAm.Size = new System.Drawing.Size(184, 42);
+            this.lbPhienAm.Size = new System.Drawing.Size(147, 33);
             this.lbPhienAm.TabIndex = 18;
             this.lbPhienAm.Text = "Phiêm âm";
             this.lbPhienAm.Visible = false;
@@ -140,9 +140,9 @@
             this.lbTuLoai.AutoSize = true;
             this.lbTuLoai.BackColor = System.Drawing.Color.LightBlue;
             this.lbTuLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTuLoai.Location = new System.Drawing.Point(189, 421);
+            this.lbTuLoai.Location = new System.Drawing.Point(189, 464);
             this.lbTuLoai.Name = "lbTuLoai";
-            this.lbTuLoai.Size = new System.Drawing.Size(130, 42);
+            this.lbTuLoai.Size = new System.Drawing.Size(103, 33);
             this.lbTuLoai.TabIndex = 19;
             this.lbTuLoai.Text = "Từ loại";
             this.lbTuLoai.Visible = false;
@@ -152,9 +152,9 @@
             this.lbViDu1.AutoSize = true;
             this.lbViDu1.BackColor = System.Drawing.Color.LightBlue;
             this.lbViDu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbViDu1.Location = new System.Drawing.Point(218, 526);
+            this.lbViDu1.Location = new System.Drawing.Point(218, 571);
             this.lbViDu1.Name = "lbViDu1";
-            this.lbViDu1.Size = new System.Drawing.Size(134, 42);
+            this.lbViDu1.Size = new System.Drawing.Size(105, 33);
             this.lbViDu1.TabIndex = 20;
             this.lbViDu1.Text = "Ví dụ 1";
             this.lbViDu1.Visible = false;
@@ -164,22 +164,21 @@
             this.lbViDu2.AutoSize = true;
             this.lbViDu2.BackColor = System.Drawing.Color.LightBlue;
             this.lbViDu2.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbViDu2.Location = new System.Drawing.Point(218, 589);
+            this.lbViDu2.Location = new System.Drawing.Point(218, 628);
             this.lbViDu2.Name = "lbViDu2";
-            this.lbViDu2.Size = new System.Drawing.Size(134, 42);
+            this.lbViDu2.Size = new System.Drawing.Size(105, 33);
             this.lbViDu2.TabIndex = 21;
             this.lbViDu2.Text = "Ví dụ 2";
             this.lbViDu2.Visible = false;
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(32, 32);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(70, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1275, 24);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -193,44 +192,44 @@
             this.toolStripSeparator1,
             this.importFileToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(60, 26);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // thêmTừToolStripMenuItem
             // 
             this.thêmTừToolStripMenuItem.Name = "thêmTừToolStripMenuItem";
-            this.thêmTừToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.thêmTừToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.thêmTừToolStripMenuItem.Text = "Thêm Từ";
             this.thêmTừToolStripMenuItem.Click += new System.EventHandler(this.thêmTừToolStripMenuItem_Click);
             // 
             // sửaToolStripMenuItem
             // 
             this.sửaToolStripMenuItem.Name = "sửaToolStripMenuItem";
-            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.sửaToolStripMenuItem.Text = "Sửa Từ";
             // 
             // xóaTừToolStripMenuItem
             // 
             this.xóaTừToolStripMenuItem.Name = "xóaTừToolStripMenuItem";
-            this.xóaTừToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.xóaTừToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.xóaTừToolStripMenuItem.Text = "Xóa Từ";
             // 
             // loaToolStripMenuItem
             // 
             this.loaToolStripMenuItem.Name = "loaToolStripMenuItem";
-            this.loaToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.loaToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.loaToolStripMenuItem.Text = "Load";
             this.loaToolStripMenuItem.Click += new System.EventHandler(this.loaToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(159, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(126, 6);
             // 
             // importFileToolStripMenuItem
             // 
             this.importFileToolStripMenuItem.Name = "importFileToolStripMenuItem";
-            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(162, 26);
+            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
             this.importFileToolStripMenuItem.Text = "Import file";
             this.importFileToolStripMenuItem.Click += new System.EventHandler(this.importFileToolStripMenuItem_Click);
             // 
@@ -241,16 +240,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btSearch.AutoSize = true;
             this.btSearch.BackColor = System.Drawing.SystemColors.Window;
-            this.btSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btSearch.BackgroundImage")));
+            this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R1;
             this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btSearch.FlatAppearance.BorderSize = 0;
             this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSearch.Location = new System.Drawing.Point(1092, 180);
+            this.btSearch.Location = new System.Drawing.Point(1092, 210);
             this.btSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(146, 67);
+            this.btSearch.Size = new System.Drawing.Size(150, 71);
             this.btSearch.TabIndex = 23;
-            this.btSearch.Text = "a";
             this.btSearch.UseVisualStyleBackColor = false;
             this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
             // 
@@ -259,10 +257,10 @@
             this.panel2.BackColor = System.Drawing.Color.LightBlue;
             this.panel2.CornerRadius = 20;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel2.Location = new System.Drawing.Point(110, 286);
+            this.panel2.Location = new System.Drawing.Point(109, 337);
             this.panel2.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1071, 386);
+            this.panel2.Size = new System.Drawing.Size(1072, 345);
             this.panel2.TabIndex = 15;
             // 
             // panel1
@@ -270,7 +268,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.CornerRadius = 20;
-            this.panel1.Location = new System.Drawing.Point(35, 174);
+            this.panel1.Location = new System.Drawing.Point(35, 208);
             this.panel1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1226, 76);
@@ -280,7 +278,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1275, 698);
+            this.ClientSize = new System.Drawing.Size(1275, 697);
             this.Controls.Add(this.btSearch);
             this.Controls.Add(this.lbViDu2);
             this.Controls.Add(this.lbViDu1);
@@ -296,13 +294,12 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.MaximizeBox = false;
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "DICTIONARY";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
