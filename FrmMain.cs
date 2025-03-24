@@ -91,13 +91,10 @@ namespace Dic_AppTest
             lbNghia.Visible = true;
             lbViDu1.Visible = true;
             lbViDu2.Visible = true;
+            label4.Visible = true;
         }
 
-        private void btSwitch_Click(object sender, EventArgs e)
-        {
-            isAnhViet = !isAnhViet;
-            btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
-        }
+    
 
         private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -232,6 +229,12 @@ namespace Dic_AppTest
             }
         }
 
-     
+        private void btSwitch_Click_1(object sender, EventArgs e)
+        {
+            isAnhViet = !isAnhViet;
+            btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
+        }
+
+       
     }
 }
