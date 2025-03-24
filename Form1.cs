@@ -16,5 +16,10 @@ namespace Dic_AppTest
         {
             InitializeComponent();
         }
+
+        private void btSwitch_Click(object sender, EventArgs e)
+        {
+            btSwitch.Text = (btSwitch.Text == "Anh - Việt") ? "Việt - Anh" : "Anh - Việt";
+        }
     }
 }
