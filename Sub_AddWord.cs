@@ -100,5 +100,7 @@ namespace Dic_AppTest
             if (MessageBox.Show("Bạn muốn đóng form?", "Xác nhận", MessageBoxButtons.OK, MessageBoxIcon.Error) == DialogResult.Cancel)
                 e.Cancel = true;
         }
+
+      
     }
 }
