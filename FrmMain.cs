@@ -25,6 +25,7 @@ namespace Dic_AppTest
             SetupAutoComplete();
             
         }
+
         private void btSearch_Click_1(object sender, EventArgs e)
         {
             string searchText = txtNhap.Text.Trim().ToLower();
@@ -93,15 +94,7 @@ namespace Dic_AppTest
             lbViDu2.Visible = true;
             label4.Visible = true;
         }
-
     
-
-        private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Sub_AddWord addWord = new Sub_AddWord();
-            addWord.Show();
-        }
-
 
 
         private void loaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -148,9 +141,6 @@ namespace Dic_AppTest
                     int rowCount = worksheet.Dimension.End.Row;
                     int colCount = worksheet.Dimension.End.Column;
 
-
-                
-
                     for (int i = 2; i <= rowCount; i++)  // Bỏ qua dòng tiêu đề
                     {
                         string English = worksheet.Cells[i, 1].Value?.ToString()?.Trim() ?? "";
@@ -173,15 +163,12 @@ namespace Dic_AppTest
                             });
                         }
                     }
-                }
-              
+                }             
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi import Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-         
-         
+            }     
         }
 
         private void ImportWord(string filePath)
@@ -192,7 +179,6 @@ namespace Dic_AppTest
             {
                 doc = wordApp.Documents.Open(filePath, ReadOnly: true);
                 string text = doc.Content.Text;
-
               
                 string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string line in lines)
@@ -213,7 +199,6 @@ namespace Dic_AppTest
                 }
 
                 MessageBox.Show("Import thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 // Cập nhật giao diện ngay lập tức
                 SetupAutoComplete();
               
@@ -234,7 +219,17 @@ namespace Dic_AppTest
             isAnhViet = !isAnhViet;
             btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
         }
+        private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sub_AddWord addWord = new Sub_AddWord();
+            addWord.Show();
+        }
 
-       
+        private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sub_EditWord editWord = new Sub_EditWord(diction);
+            editWord.Show();
+        }
     }
+
 }

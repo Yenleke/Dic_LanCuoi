@@ -47,10 +47,10 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btSearch = new System.Windows.Forms.Button();
-            this.panel2 = new Dic_AppTest.Panel();
-            this.panel1 = new Dic_AppTest.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel2 = new Dic_AppTest.Panel();
+            this.panel1 = new Dic_AppTest.Panel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,16 +82,16 @@
             this.txtNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhap.Location = new System.Drawing.Point(45, 236);
+            this.txtNhap.Location = new System.Drawing.Point(56, 236);
             this.txtNhap.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtNhap.Name = "txtNhap";
-            this.txtNhap.Size = new System.Drawing.Size(890, 31);
+            this.txtNhap.Size = new System.Drawing.Size(908, 31);
             this.txtNhap.TabIndex = 12;
             // 
             // btSwitch
             // 
             this.btSwitch.AutoSize = true;
-            this.btSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.btSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btSwitch.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSwitch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btSwitch.Location = new System.Drawing.Point(1004, 227);
@@ -155,10 +155,10 @@
             // 
             this.lbViDu1.AutoSize = true;
             this.lbViDu1.BackColor = System.Drawing.Color.LightBlue;
-            this.lbViDu1.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbViDu1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbViDu1.Location = new System.Drawing.Point(218, 602);
             this.lbViDu1.Name = "lbViDu1";
-            this.lbViDu1.Size = new System.Drawing.Size(99, 34);
+            this.lbViDu1.Size = new System.Drawing.Size(94, 31);
             this.lbViDu1.TabIndex = 20;
             this.lbViDu1.Text = "Ví dụ 1";
             this.lbViDu1.Visible = false;
@@ -167,10 +167,10 @@
             // 
             this.lbViDu2.AutoSize = true;
             this.lbViDu2.BackColor = System.Drawing.Color.LightBlue;
-            this.lbViDu2.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbViDu2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbViDu2.Location = new System.Drawing.Point(218, 636);
             this.lbViDu2.Name = "lbViDu2";
-            this.lbViDu2.Size = new System.Drawing.Size(99, 34);
+            this.lbViDu2.Size = new System.Drawing.Size(94, 31);
             this.lbViDu2.TabIndex = 21;
             this.lbViDu2.Text = "Ví dụ 2";
             this.lbViDu2.Visible = false;
@@ -209,8 +209,9 @@
             // sửaToolStripMenuItem
             // 
             this.sửaToolStripMenuItem.Name = "sửaToolStripMenuItem";
-            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.sửaToolStripMenuItem.Text = "Sửa Từ";
+            this.sửaToolStripMenuItem.Click += new System.EventHandler(this.sửaToolStripMenuItem_Click);
             // 
             // xóaTừToolStripMenuItem
             // 
@@ -243,18 +244,35 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btSearch.AutoSize = true;
-            this.btSearch.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btSearch.BackColor = System.Drawing.Color.White;
             this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R;
             this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btSearch.FlatAppearance.BorderSize = 0;
             this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSearch.Location = new System.Drawing.Point(1121, 219);
+            this.btSearch.Location = new System.Drawing.Point(1121, 225);
             this.btSearch.Margin = new System.Windows.Forms.Padding(6);
             this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(121, 71);
+            this.btSearch.Size = new System.Drawing.Size(125, 58);
             this.btSearch.TabIndex = 23;
             this.btSearch.UseVisualStyleBackColor = false;
             this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
+            // 
+            // label1
+            // 
+            this.label1.BackColor = System.Drawing.Color.SteelBlue;
+            this.label1.Location = new System.Drawing.Point(972, 218);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(10, 75);
+            this.label1.TabIndex = 24;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.Color.SteelBlue;
+            this.label4.Location = new System.Drawing.Point(108, 534);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(1073, 4);
+            this.label4.TabIndex = 24;
+            this.label4.Visible = false;
             // 
             // panel2
             // 
@@ -277,23 +295,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1226, 76);
             this.panel1.TabIndex = 11;
-            // 
-            // label1
-            // 
-            this.label1.BackColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(971, 218);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(10, 75);
-            this.label1.TabIndex = 24;
-            // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.SteelBlue;
-            this.label4.Location = new System.Drawing.Point(108, 534);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1073, 4);
-            this.label4.TabIndex = 24;
-            this.label4.Visible = false;
             // 
             // FrmMain
             // 
