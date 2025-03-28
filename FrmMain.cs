@@ -11,7 +11,7 @@ namespace Dic_AppTest
     public partial class FrmMain : Form
     {
         string excelpath = "dictionary_fully_unique_sentences.xlsx";
-        List<WordEntry> diction = new List<WordEntry>();
+        public List<WordEntry> diction = new List<WordEntry>();
         bool isAnhViet = true;
 
         public FrmMain()
@@ -23,62 +23,59 @@ namespace Dic_AppTest
         {
             ImportExcel(excelpath);
             SetupAutoComplete();
-            
         }
-
-        private void btSearch_Click_1(object sender, EventArgs e)
+        public bool Search(string searchText, Action<string, string, string, string, string, string> updateUI)
         {
-            string searchText = txtNhap.Text.Trim().ToLower();
-            if (isAnhViet)
+            if (string.IsNullOrWhiteSpace(searchText))
             {
-                var result = diction.FirstOrDefault(d => d.English.ToLower() == searchText);
-                if (result != null)
+                MessageBox.Show("Vui lòng nhập từ cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+
+            searchText = searchText.Trim().ToLower();
+
+            WordEntry result = isAnhViet
+                ? diction.FirstOrDefault(d => d.English.ToLower() == searchText)
+                : diction.FirstOrDefault(d => d.Meaning.ToLower().Contains(searchText));
+
+            if (result != null)
+            {
+                if (isAnhViet)
                 {
-                    LbTiengAnh.Text = result.English;
-                    lbPhienAm.Text = result.Pronunciation;
-                    lbTuLoai.Text = result.WordType;
-                    lbNghia.Text = result.Meaning;
-                    lbViDu1.Text = result.Example1;
-                    lbViDu2.Text = result.Example2;
-                    hienThi();
-                    txtNhap.Clear();
+                    updateUI(result.English, result.Pronunciation, result.WordType, result.Meaning, result.Example1, result.Example2);
                 }
                 else
                 {
-                    MessageBox.Show("Không tìm thấy từ này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    updateUI(result.Meaning, result.Pronunciation, result.WordType, result.English, result.Example1, result.Example2);
                 }
+                return true;
             }
             else
             {
-                var result = diction.FirstOrDefault(d => d.Meaning.ToLower().Contains(searchText));
-                if (result != null)
-                {
-                    LbTiengAnh.Text = result.Meaning;
-                    lbPhienAm.Text = result.Pronunciation;
-                    lbTuLoai.Text = result.WordType;
-                    lbNghia.Text = result.English;
-                    lbViDu1.Text = result.Example1;
-                    lbViDu2.Text = result.Example2;
-                    hienThi();
-                    txtNhap.Clear();
-                }
-                else
-                {
-                    MessageBox.Show("Không tìm thấy từ này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+                MessageBox.Show("Không tìm thấy từ này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
             }
-
         }
+
+       
 
         private void SetupAutoComplete()
         {
+            
             txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;
-
+           
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
+            txtNhap.AutoCompleteCustomSource.Clear();
             foreach (var word in diction)
             {
-                autoCompleteCollection.Add(word.English);
+                if (isAnhViet)
+                { 
+                    autoCompleteCollection.Add(word.English); 
+                }
+                else {
+                    autoCompleteCollection.Add(word.Meaning);
+                }
             }
 
             txtNhap.AutoCompleteCustomSource = autoCompleteCollection;
@@ -125,7 +122,7 @@ namespace Dic_AppTest
             }
         }
 
-        private void ImportExcel(string filePath)
+        public void ImportExcel(string filePath)
         {
             try
             {
@@ -214,10 +211,11 @@ namespace Dic_AppTest
             }
         }
 
-        private void btSwitch_Click_1(object sender, EventArgs e)
+        public void btSwitch_Click_1(object sender, EventArgs e)
         {
             isAnhViet = !isAnhViet;
             btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
+            SetupAutoComplete();
         }
         private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -225,11 +223,27 @@ namespace Dic_AppTest
             addWord.Show();
         }
 
+        private void btSearch_Click_1(object sender, EventArgs e)
+        {
+            
+            Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
+            {
+                LbTiengAnh.Text = word1;
+                lbPhienAm.Text = pronunciation;
+                lbTuLoai.Text = wordType;
+                lbNghia.Text = word2;
+                lbViDu1.Text = example1;
+                lbViDu2.Text = example2;
+                hienThi();
+            }); ;
+        }
+
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Sub_EditWord editWord = new Sub_EditWord(diction);
+            Sub_EditWord editWord = new Sub_EditWord(this);
             editWord.Show();
         }
     }
+   
 
 }
