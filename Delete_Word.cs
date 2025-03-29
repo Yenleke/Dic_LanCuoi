@@ -20,7 +20,6 @@ namespace Dic_AppTest
         {
             try
             {
-                // Kiểm tra dữ liệu nhập
                 if (string.IsNullOrWhiteSpace(txtNhap.Text))
                 {
                     MessageBox.Show("Vui lòng nhập từ cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -37,6 +36,7 @@ namespace Dic_AppTest
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
                 bool found = false;
+                int rowToDelete = -1;
 
                 using (var package = new ExcelPackage(file))
                 {
@@ -48,17 +48,20 @@ namespace Dic_AppTest
                     {
                         for (int col = 1; col <= colCount; col++)
                         {
-                            if (worksheet.Cells[row, col].Value?.ToString() == txtNhap.Text)
+                            if (worksheet.Cells[row, col].Value?.ToString().Trim() == txtNhap.Text.Trim())
                             {
-                                worksheet.Cells[row, col].Value = ""; // Xóa từ
+                                rowToDelete = row; // Lưu lại hàng cần xóa
                                 found = true;
+                                break;
                             }
                         }
+                        if (found) break; // Thoát khỏi vòng lặp nếu tìm thấy
                     }
 
-                    if (found)
+                    if (found && rowToDelete > 0)
                     {
-                        package.Save(); // Lưu thay đổi
+                        worksheet.DeleteRow(rowToDelete); // Xóa toàn bộ hàng chứa từ cần xóa
+                        package.Save(); // Lưu file Excel
                         MessageBox.Show("Xóa từ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
@@ -67,13 +70,14 @@ namespace Dic_AppTest
                     }
                 }
 
-                txtNhap.Text = "";
+                txtNhap.Text = ""; // Reset ô nhập sau khi xóa
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi khi xóa từ: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         private void btNhaplai_Click(object sender, EventArgs e)
         {
