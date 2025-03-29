@@ -13,8 +13,7 @@ using System.Windows.Forms;
 namespace Dic_AppTest
 {
     public partial class Sub_EditWord : Form
-    {
-        WordEntry result;
+    {       
         string excelpath = "dictionary_fully_unique_sentences.xlsx";
         bool isAnhViet = true;
         private FrmMain frmMain;
@@ -24,13 +23,14 @@ namespace Dic_AppTest
             InitializeComponent();
             this.frmMain = frmMain;
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-        }
+            new SetupTextup(txtNhap, "Type here...");
+    }
 
         private void btSwitch_Click(object sender, EventArgs e)
         {
             isAnhViet = !isAnhViet;
             btSwitch.Text = isAnhViet ? "Anh-Việt" : "Việt-Anh";
-            SetupAutoComplete();           
+            SetupAutoComplete();
         }
 
         private void Sub_EditWord_Load(object sender, EventArgs e)
@@ -68,24 +68,17 @@ namespace Dic_AppTest
 
             bool found = frmMain.Search(searchText, (word1, pronunciation, wordType, word2, example1, example2) =>
             {
-                result = new WordEntry()
-                {
-                    English = word1,
-                    Pronunciation = pronunciation,
-                    WordType = wordType,
-                    Meaning = word2,
-                    Example1 = example1,
-                    Example2 = example2
-                };
                 txtTuVung.Text = word1;
                 txtPhienAm.Text = pronunciation;
                 txtTuloai.Text = wordType;
                 txtNghia.Text = word2;
                 txtVidu1.Text = example1;
                 txtVidu2.Text = example2;
+
+
             });
             hienThi();
-          
+
         }
         private void hienThi()
         {
@@ -103,96 +96,10 @@ namespace Dic_AppTest
             txtVidu1.Visible = true;
             txtVidu2.Visible = true;
             btSave.Visible = true;
-            
+
         }
-        //private void btSave_Click(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
 
-        //        if (result != null)
-        //        {
-        //            if (string.IsNullOrWhiteSpace(txtTuVung.Text) || string.IsNullOrWhiteSpace(txtNghia.Text))
-        //            {
-        //                MessageBox.Show("Vui lòng nhập đầy đủ từ vựng và nghĩa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //                return;
-        //            }
-        //            if (isAnhViet)
-        //            {
-        //                result.English = txtTuVung.Text.Trim();
-        //                result.Pronunciation = txtPhienAm.Text.Trim();
-        //                result.WordType = txtTuloai.Text.Trim();
-        //                result.Meaning = txtNghia.Text.Trim();
-        //                result.Example1 = txtVidu1.Text.Trim();
-        //                result.Example2 = txtVidu2.Text.Trim();
-        //            }
-        //            else {
-        //                result.Meaning = txtTuVung.Text.Trim();
-        //                result.Pronunciation = txtPhienAm.Text.Trim();
-        //                result.WordType = txtTuloai.Text.Trim();
-        //                result.English = txtNghia.Text.Trim();
-        //                result.Example1 = txtVidu1.Text.Trim();
-        //                result.Example2 = txtVidu2.Text.Trim();
-        //            }
-
-        //        }
-
-        //        FileInfo file = new FileInfo(excelpath);
-        //        using (ExcelPackage package = file.Exists ? new ExcelPackage(file) : new ExcelPackage())
-        //        {
-        //            ExcelWorksheet worksheet = package.Workbook.Worksheets.Count > 0 ?
-        //                package.Workbook.Worksheets[0] : package.Workbook.Worksheets.Add("TuDien");
-
-        //            // Xác định số dòng hiện tại
-        //            int rowCount = worksheet.Dimension?.Rows ?? 0;
-
-        //            if (rowCount == 0)
-        //            {
-        //                // Nếu file trống, thêm tiêu đề
-        //                worksheet.Cells[1, 1].Value = "Từ vựng";
-        //                worksheet.Cells[1, 2].Value = "Phiên âm";
-        //                worksheet.Cells[1, 3].Value = "Loại từ";
-        //                worksheet.Cells[1, 4].Value = "Nghĩa";
-        //                worksheet.Cells[1, 5].Value = "Ví dụ 1";
-        //                worksheet.Cells[1, 6].Value = "Ví dụ 2";
-        //                rowCount = 1; // Bắt đầu từ dòng 2
-        //            }
-        //            else
-        //            {
-        //                rowCount++; // Xuống dòng tiếp theo
-        //            }
-
-        //            // Ghi dữ liệu vào hàng mới
-        //            worksheet.Cells[rowCount, 1].Value = txtTuVung.Text;
-        //            worksheet.Cells[rowCount, 2].Value = txtPhienAm.Text;
-        //            worksheet.Cells[rowCount, 3].Value = txtTuloai.Text;
-        //            worksheet.Cells[rowCount, 4].Value = txtNghia.Text;
-        //            worksheet.Cells[rowCount, 5].Value = txtVidu1.Text;
-        //            worksheet.Cells[rowCount, 6].Value = txtVidu2.Text;
-
-        //            package.Save(); // Lưu lại file
-        //        }
-
-        //        MessageBox.Show("Thêm từ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-        //        // Xóa dữ liệu nhập sau khi lưu
-        //        txtTuVung.Clear();
-        //        txtPhienAm.Clear();
-        //        txtTuloai.Clear();
-        //        txtNghia.Clear();
-        //        txtVidu1.Clear();
-        //        txtVidu2.Clear();
-
-        //        // Cập nhật lại danh sách từ vựng trong form tra từ điển
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Lỗi khi lưu từ: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        //    }
-
-        //}
-        private void SaveToExcel()
+private void SaveToExcel()
         {
             FileInfo file = new FileInfo(excelpath);
             using (ExcelPackage package = file.Exists ? new ExcelPackage(file) : new ExcelPackage())
@@ -211,20 +118,89 @@ namespace Dic_AppTest
                     worksheet.Cells[1, 6].Value = "Ví dụ 2";
                 }
 
-                // Xác định dòng trống tiếp theo
-                int rowCount = worksheet.Dimension?.Rows + 1 ?? 2;
+                // Lấy số dòng hiện có trong sheet
+                int rowCount = worksheet.Dimension?.Rows ?? 0;
+                bool found = false;
 
-                // Ghi dữ liệu vào Excel
-                worksheet.Cells[rowCount, 1].Value = txtTuVung.Text;
-                worksheet.Cells[rowCount, 2].Value = txtPhienAm.Text;
-                worksheet.Cells[rowCount, 3].Value = txtTuloai.Text;
-                worksheet.Cells[rowCount, 4].Value = txtNghia.Text;
-                worksheet.Cells[rowCount, 5].Value = txtVidu1.Text;
-                worksheet.Cells[rowCount, 6].Value = txtVidu2.Text;
+                // Tìm dòng chứa từ cần sửa
+                for (int row = 2; row <= rowCount; row++) // Bỏ qua dòng tiêu đề
+                {
+                    string wordInCell = worksheet.Cells[row, 1].Value?.ToString();
+                    string meaningInCell = worksheet.Cells[row, 4].Value?.ToString();
+
+                    if ((isAnhViet && wordInCell == txtTuVung.Text) || (!isAnhViet && meaningInCell == txtNghia.Text))
+                    {
+                        // Cập nhật dữ liệu tại dòng tìm được
+                        worksheet.Cells[row, 1].Value = txtTuVung.Text;
+                        worksheet.Cells[row, 2].Value = txtPhienAm.Text;
+                        worksheet.Cells[row, 3].Value = txtTuloai.Text;
+                        worksheet.Cells[row, 4].Value = txtNghia.Text;
+                        worksheet.Cells[row, 5].Value = txtVidu1.Text;
+                        worksheet.Cells[row, 6].Value = txtVidu2.Text;
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    MessageBox.Show("Không tìm thấy từ để sửa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
 
                 package.Save();
+                MessageBox.Show("Cập nhật từ thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        
         }
 
+        private void btSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+
+
+                if (string.IsNullOrWhiteSpace(txtTuVung.Text) || string.IsNullOrWhiteSpace(txtNghia.Text))
+                {
+                    MessageBox.Show("Vui lòng nhập đầy đủ từ vựng và nghĩa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                string tuVung = txtTuVung.Text.Trim();
+                string nghia = txtNghia.Text.Trim();
+                string phienAm = txtPhienAm.Text.Trim();
+                string loaiTu = txtTuloai.Text.Trim();
+                string viDu1 = txtVidu1.Text.Trim();
+                string viDu2 = txtVidu2.Text.Trim();
+                var existingWord = frmMain.diction.FirstOrDefault(d => isAnhViet ? d.English == tuVung : d.Meaning == nghia);
+                if (existingWord != null)
+                {
+
+                    existingWord.English = isAnhViet ? tuVung : nghia;
+                    existingWord.Meaning = isAnhViet ? nghia : tuVung;
+                    existingWord.Pronunciation = phienAm;
+                    existingWord.WordType = loaiTu;
+                    existingWord.Example1 = viDu1;
+                    existingWord.Example2 = viDu2;
+
+                }
+
+                SaveToExcel();
+
+
+                txtTuVung.Clear();
+                txtPhienAm.Clear();
+                txtTuloai.Clear();
+                txtNghia.Clear();
+                txtVidu1.Clear();
+                txtVidu2.Clear();
+
+                // Cập nhật lại danh sách từ vựng trong form tra từ điển
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu từ: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

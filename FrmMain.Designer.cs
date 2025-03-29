@@ -40,17 +40,18 @@
             this.lbViDu2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmTừToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaTừToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ThêmTừToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SửaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.XóaTừToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LichSuToolstrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.importFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btSearch = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel2 = new Dic_AppTest.Panel();
             this.panel1 = new Dic_AppTest.Panel();
+            this.btSearch = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,11 +82,11 @@
             // 
             this.txtNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtNhap.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNhap.Location = new System.Drawing.Point(56, 236);
+            this.txtNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNhap.Location = new System.Drawing.Point(58, 235);
             this.txtNhap.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.txtNhap.Name = "txtNhap";
-            this.txtNhap.Size = new System.Drawing.Size(908, 31);
+            this.txtNhap.Size = new System.Drawing.Size(908, 33);
             this.txtNhap.TabIndex = 12;
             // 
             // btSwitch
@@ -94,7 +95,7 @@
             this.btSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btSwitch.Font = new System.Drawing.Font("Modern No. 20", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btSwitch.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btSwitch.Location = new System.Drawing.Point(1004, 227);
+            this.btSwitch.Location = new System.Drawing.Point(1014, 227);
             this.btSwitch.Name = "btSwitch";
             this.btSwitch.Size = new System.Drawing.Size(108, 56);
             this.btSwitch.TabIndex = 13;
@@ -189,78 +190,68 @@
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thêmTừToolStripMenuItem,
-            this.sửaToolStripMenuItem,
-            this.xóaTừToolStripMenuItem,
-            this.loaToolStripMenuItem,
+            this.ThêmTừToolStripMenuItem,
+            this.SửaToolStripMenuItem,
+            this.XóaTừToolStripMenuItem,
+            this.LichSuToolstrip,
+            this.LoadToolStripMenuItem,
             this.toolStripSeparator1,
             this.importFileToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(69, 29);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
-            // thêmTừToolStripMenuItem
+            // ThêmTừToolStripMenuItem
             // 
-            this.thêmTừToolStripMenuItem.Name = "thêmTừToolStripMenuItem";
-            this.thêmTừToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.thêmTừToolStripMenuItem.Text = "Thêm Từ";
-            this.thêmTừToolStripMenuItem.Click += new System.EventHandler(this.thêmTừToolStripMenuItem_Click);
+            this.ThêmTừToolStripMenuItem.Name = "ThêmTừToolStripMenuItem";
+            this.ThêmTừToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.ThêmTừToolStripMenuItem.Text = "Thêm Từ";
+            this.ThêmTừToolStripMenuItem.Click += new System.EventHandler(this.ThêmTừToolStripMenuItem_Click);
             // 
-            // sửaToolStripMenuItem
+            // SửaToolStripMenuItem
             // 
-            this.sửaToolStripMenuItem.Name = "sửaToolStripMenuItem";
-            this.sửaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
-            this.sửaToolStripMenuItem.Text = "Sửa Từ";
-            this.sửaToolStripMenuItem.Click += new System.EventHandler(this.sửaToolStripMenuItem_Click);
+            this.SửaToolStripMenuItem.Name = "SửaToolStripMenuItem";
+            this.SửaToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.SửaToolStripMenuItem.Text = "Sửa Từ";
+            this.SửaToolStripMenuItem.Click += new System.EventHandler(this.SửaToolStripMenuItem_Click);
             // 
-            // xóaTừToolStripMenuItem
+            // XóaTừToolStripMenuItem
             // 
-            this.xóaTừToolStripMenuItem.Name = "xóaTừToolStripMenuItem";
-            this.xóaTừToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.xóaTừToolStripMenuItem.Text = "Xóa Từ";
+            this.XóaTừToolStripMenuItem.Name = "XóaTừToolStripMenuItem";
+            this.XóaTừToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.XóaTừToolStripMenuItem.Text = "Xóa Từ";
+            this.XóaTừToolStripMenuItem.Click += new System.EventHandler(this.XóaTừToolStripMenuItem_Click);
             // 
-            // loaToolStripMenuItem
+            // LichSuToolstrip
             // 
-            this.loaToolStripMenuItem.Name = "loaToolStripMenuItem";
-            this.loaToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
-            this.loaToolStripMenuItem.Text = "Load";
-            this.loaToolStripMenuItem.Click += new System.EventHandler(this.loaToolStripMenuItem_Click);
+            this.LichSuToolstrip.Name = "LichSuToolstrip";
+            this.LichSuToolstrip.Size = new System.Drawing.Size(180, 30);
+            this.LichSuToolstrip.Text = "Lịch sử ";
+            this.LichSuToolstrip.Click += new System.EventHandler(this.LichSuToolstrip_Click);
+            // 
+            // LoadToolStripMenuItem
+            // 
+            this.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem";
+            this.LoadToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
+            this.LoadToolStripMenuItem.Text = "Load";
+            this.LoadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // importFileToolStripMenuItem
             // 
             this.importFileToolStripMenuItem.Name = "importFileToolStripMenuItem";
-            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(167, 30);
+            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(180, 30);
             this.importFileToolStripMenuItem.Text = "Import file";
             this.importFileToolStripMenuItem.Click += new System.EventHandler(this.importFileToolStripMenuItem_Click);
-            // 
-            // btSearch
-            // 
-            this.btSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSearch.AutoSize = true;
-            this.btSearch.BackColor = System.Drawing.Color.White;
-            this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R;
-            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btSearch.FlatAppearance.BorderSize = 0;
-            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSearch.Location = new System.Drawing.Point(1121, 225);
-            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(125, 58);
-            this.btSearch.TabIndex = 23;
-            this.btSearch.UseVisualStyleBackColor = false;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.SteelBlue;
-            this.label1.Location = new System.Drawing.Point(972, 218);
+            this.label1.Location = new System.Drawing.Point(985, 219);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(10, 75);
             this.label1.TabIndex = 24;
@@ -295,6 +286,25 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1226, 76);
             this.panel1.TabIndex = 11;
+            // 
+            // btSearch
+            // 
+            this.btSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSearch.AutoSize = true;
+            this.btSearch.BackColor = System.Drawing.Color.White;
+            this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R;
+            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btSearch.FlatAppearance.BorderSize = 0;
+            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSearch.Location = new System.Drawing.Point(1131, 227);
+            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(110, 56);
+            this.btSearch.TabIndex = 23;
+            this.btSearch.UseVisualStyleBackColor = false;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
             // 
             // FrmMain
             // 
@@ -347,16 +357,17 @@
         private System.Windows.Forms.Label lbViDu2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem thêmTừToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sửaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem xóaTừToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ThêmTừToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SửaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem XóaTừToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem importFileToolStripMenuItem;
         private Panel panel2;
         private System.Windows.Forms.Button btSearch;
-        private System.Windows.Forms.ToolStripMenuItem loaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LoadToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem LichSuToolstrip;
     }
 }
 

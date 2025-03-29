@@ -13,6 +13,7 @@ namespace Dic_AppTest
         public Delete_Word()
         {
             InitializeComponent();
+            new SetupTextup(txtNhap, "Type here...");
         }
 
         private void btLuu_Click(object sender, EventArgs e)
