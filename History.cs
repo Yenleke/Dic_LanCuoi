@@ -1,68 +1,73 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 
 namespace Dic_AppTest
 {
-    public partial class History: Form
+    public partial class History : Form
     {
+        private string historyFilePath = "search_history.xlsx";
+        private BindingSource bindingSource = new BindingSource();
+
         public History()
         {
             InitializeComponent();
             LoadHistory();
+            listBox1.DataSource = bindingSource;
+
             // Bo góc cho Button
             RoundedControl.SetRoundedRegion(btXoa1tu, 25);
             RoundedControl.SetRoundedRegion(btXoaall, 25);
-
-            // Bo góc cho ListBox (nếu cần)
             RoundedControl.SetRoundedRegion(listBox1, 10);
-
-            RoundedControl.SetRoundedRegion(this, 10); // Bo góc form
+            RoundedControl.SetRoundedRegion(this, 10);
         }
-        SearchHistory history = new SearchHistory();
-        private BindingSource bindingSource = new BindingSource();
 
-
-        // Tải lịch sử vào ListBox
         private void LoadHistory()
         {
-            // Xóa danh sách cũ trước khi thêm mới
-            history.ClearHistory();  // Đảm bảo không bị trùng lặp dữ liệu
+            try
+            {
+                if (!File.Exists(historyFilePath))
+                    return;
 
-            // Thêm một số từ mẫu để kiểm tra
-            history.AddToHistory("Apple");
-            history.AddToHistory("Orange");
-            history.AddToHistory("Banana");
-            history.AddToHistory("Grapes");
-            history.AddToHistory("Mango");
+                FileInfo file = new FileInfo(historyFilePath);
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
 
-            // Cập nhật DataSource
-            bindingSource.DataSource = history.GetHistoryDisplay();
-            bindingSource.ResetBindings(false); // Cập nhật ListBox
-            listBox1.DataSource = bindingSource;
+                using (var package = new ExcelPackage(file))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension?.Rows ?? 0;
+
+                    List<string> words = new List<string>();
+                    for (int row = 1; row <= rowCount; row++)
+                    {
+                        string word = worksheet.Cells[row, 1].Value?.ToString();
+                        if (!string.IsNullOrEmpty(word))
+                        {
+                            words.Add(word);
+                        }
+                    }
+
+                    bindingSource.DataSource = words;
+                    bindingSource.ResetBindings(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void btXoa1tu_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem != null)
             {
-                string selectedEntry = listBox1.SelectedItem.ToString();
-                string selectedWord = selectedEntry.Split('-')[0].Trim();
-                history.RemoveFromHistory(selectedWord);
-
-                //LoadHistory();
-
-                // Cập nhật danh sách hiển thị mà không load lại danh sách mẫu
-                bindingSource.DataSource = history.GetHistoryDisplay();
-                bindingSource.ResetBindings(false);
+                string selectedWord = listBox1.SelectedItem.ToString().Trim();
+                RemoveFromHistory(selectedWord);
+                LoadHistory();
             }
             else
             {
@@ -72,12 +77,71 @@ namespace Dic_AppTest
 
         private void btXoaall_Click(object sender, EventArgs e)
         {
-            history.ClearHistory();
-            //LoadHistory();
+            ClearHistory();
+            LoadHistory();
+        }
 
-            // Cập nhật danh sách hiển thị mà không load lại danh sách mẫu
-            bindingSource.DataSource = history.GetHistoryDisplay();
-            bindingSource.ResetBindings(false);
+        private void RemoveFromHistory(string wordToRemove)
+        {
+            try
+            {
+                if (!File.Exists(historyFilePath))
+                    return;
+
+                FileInfo file = new FileInfo(historyFilePath);
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(file))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension?.Rows ?? 0;
+                    List<string> words = new List<string>();
+
+                    for (int row = 1; row <= rowCount; row++)
+                    {
+                        string word = worksheet.Cells[row, 1].Value?.ToString();
+                        if (!string.IsNullOrEmpty(word) && word != wordToRemove)
+                        {
+                            words.Add(word);
+                        }
+                    }
+
+                    worksheet.Cells.Clear(); // Xóa nội dung, không làm mất cấu trúc bảng
+                    for (int i = 0; i < words.Count; i++)
+                    {
+                        worksheet.Cells[i + 1, 1].Value = words[i];
+                    }
+
+                    package.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa từ khỏi lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ClearHistory()
+        {
+            try
+            {
+                if (File.Exists(historyFilePath))
+                {
+                    FileInfo file = new FileInfo(historyFilePath);
+                    ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                    using (var package = new ExcelPackage(file))
+                    {
+                        var worksheet = package.Workbook.Worksheets[0];
+                        worksheet.Cells.Clear();
+                        package.Save();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi xóa lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         public class RoundedControl
@@ -95,24 +159,41 @@ namespace Dic_AppTest
             }
         }
 
-        protected override void OnPaint(PaintEventArgs e)
+        public void LoadHistoryFromExcel()
         {
-            base.OnPaint(e);
-            RoundedControl.SetRoundedRegion(this, 20); // Bo góc form
+            try
+            {
+                if (!File.Exists(historyFilePath))
+                    return;
+
+                FileInfo file = new FileInfo(historyFilePath);
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+
+                using (var package = new ExcelPackage(file))
+                {
+                    var worksheet = package.Workbook.Worksheets[0];
+                    int rowCount = worksheet.Dimension?.Rows ?? 0;
+
+                    List<string> words = new List<string>();
+
+                    for (int row = 1; row <= rowCount; row++)
+                    {
+                        string word = worksheet.Cells[row, 1].Value?.ToString();
+                        if (!string.IsNullOrEmpty(word))
+                        {
+                            words.Add(word);
+                        }
+                    }
+
+                    bindingSource.DataSource = words;
+                    bindingSource.ResetBindings(false);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
-       
-        //private void listBox1_MouseDoubleClick(object sender, MouseEventArgs e)
-        //{
-        //    if (listBox1.SelectedItem != null)
-        //    {
-        //        string selectedEntry = listBox1.SelectedItem.ToString();
-        //        string selectedWord = selectedEntry.Split('-')[0].Trim();
-
-        //        History dictionaryForm = new History();
-        //        dictionaryForm.SearchWord(selectedWord);
-        //        dictionaryForm.Show();
-        //    }
-        //}
     }
 }

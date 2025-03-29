@@ -223,9 +223,22 @@ namespace Dic_AppTest
                 lbViDu1.Text = example1;
                 lbViDu2.Text = example2;
                 hienThi();
-            }); ;
-        }
+            }); 
+            string searchWord = txtNhap.Text.Trim();
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                // Ghi từ vào file Excel
+                SaveSearchToHistory(searchWord);
 
+                // Nếu form lịch sử đang mở, cập nhật luôn
+                if (history != null && !history.IsDisposed)
+                {
+                    history.LoadHistoryFromExcel();
+                }
+            }
+
+        }
+        private History history;
 
 
         private void ThêmTừToolStripMenuItem_Click(object sender, EventArgs e)
@@ -255,13 +268,53 @@ namespace Dic_AppTest
             Delete_Word delete = new Delete_Word();
             delete.ShowDialog();
         }
-
         private void LichSuToolstrip_Click(object sender, EventArgs e)
         {
-            History history = new History();
-            history.ShowDialog();
+            History historyForm = new History();
+            historyForm.Show();
         }
+        private void pnHis_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveSearchToHistory(string word)
+        {
+            try
+            {
+                string filePath = "search_history.xlsx";
+
+                // Đảm bảo thư viện EPPlus có thể sử dụng
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+                using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
+                {
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("History");
+
+                    // Tìm dòng trống tiếp theo
+                    int nextRow = worksheet.Dimension?.Rows + 1 ?? 2;
+
+                    // Nếu là lần đầu tiên, thêm tiêu đề
+                    if (nextRow == 2 && worksheet.Cells["A1"].Value == null)
+                    {
+                        worksheet.Cells[1, 1].Value = "";
+                    }
+
+                    // Ghi từ vào dòng tiếp theo
+                    worksheet.Cells[nextRow, 1].Value = word;
+
+                    // Lưu lại file
+                    package.SaveAs(new FileInfo(filePath));
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi lưu lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
     }
-   
+
 
 }
