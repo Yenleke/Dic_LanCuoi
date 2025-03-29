@@ -18,6 +18,7 @@ namespace Dic_AppTest
         {
             InitializeComponent();
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            new SetupTextup(txtNhap, "Type here to search...");
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
@@ -91,16 +92,7 @@ namespace Dic_AppTest
             lbViDu2.Visible = true;
             label4.Visible = true;
         }
-    
-
-
-        private void loaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Hide(); // Ẩn form hiện tại thay vì đóng
-            FrmMain newForm = new FrmMain();
-            newForm.ShowDialog(); // Hiển thị form mới ở chế độ modal
-            this.Close(); // Đóng form cũ sau khi form mới đóng lại
-        }
+        
 
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -217,11 +209,7 @@ namespace Dic_AppTest
             btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
             SetupAutoComplete();
         }
-        private void thêmTừToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Sub_AddWord addWord = new Sub_AddWord();
-            addWord.Show();
-        }
+     
 
         private void btSearch_Click_1(object sender, EventArgs e)
         {
@@ -238,10 +226,40 @@ namespace Dic_AppTest
             }); ;
         }
 
-        private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
+
+
+        private void ThêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Sub_EditWord editWord = new Sub_EditWord(this);
-            editWord.Show();
+            Sub_AddWord add = new Sub_AddWord();
+            add.ShowDialog();
+        }
+
+        private void SửaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sub_EditWord edit = new Sub_EditWord(this);
+            edit.ShowDialog();
+
+        }
+
+
+        private void LoadToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            this.Hide(); // Ẩn form hiện tại thay vì đóng
+            FrmMain newForm = new FrmMain();
+            newForm.ShowDialog(); // Hiển thị form mới ở chế độ modal
+            this.Close(); // Đóng form cũ sau khi form mới đóng lại
+        }
+
+        private void XóaTừToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Delete_Word delete = new Delete_Word();
+            delete.ShowDialog();
+        }
+
+        private void LichSuToolstrip_Click(object sender, EventArgs e)
+        {
+            History history = new History();
+            history.ShowDialog();
         }
     }
    
