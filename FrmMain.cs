@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
+using System.Collections;
 
 namespace Dic_AppTest
 {
@@ -38,6 +39,7 @@ namespace Dic_AppTest
             WordEntry result = isAnhViet
                 ? diction.FirstOrDefault(d => d.English.ToLower() == searchText)
                 : diction.FirstOrDefault(d => d.Meaning.ToLower().Contains(searchText));
+            
 
             if (result != null)
             {
@@ -209,11 +211,10 @@ namespace Dic_AppTest
             btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
             SetupAutoComplete();
         }
-     
 
-        private void btSearch_Click_1(object sender, EventArgs e)
+        public void Search()
         {
-            
+
             Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
             {
                 LbTiengAnh.Text = word1;
@@ -223,7 +224,7 @@ namespace Dic_AppTest
                 lbViDu1.Text = example1;
                 lbViDu2.Text = example2;
                 hienThi();
-            }); 
+            });
             string searchWord = txtNhap.Text.Trim();
             if (!string.IsNullOrEmpty(searchWord))
             {
@@ -236,8 +237,30 @@ namespace Dic_AppTest
                     history.LoadHistoryFromExcel();
                 }
             }
+        }
+     
+
+        private void btSearch_Click_1(object sender, EventArgs e)
+        {
+            Search();
 
         }
+
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            switch ((keyData)
+)
+            {
+                case Keys.Enter:
+                    Search();
+
+                    break;
+                default:
+                    break;
+            }
+            return false;
+        }
+
         private History history;
 
 
@@ -314,6 +337,15 @@ namespace Dic_AppTest
             }
         }
 
+        private void btSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void lbViDu2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
