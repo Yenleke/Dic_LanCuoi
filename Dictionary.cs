@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dic_AppTest
 {
-    class WordEntry
+    public class WordEntry
     {
         public string English { get; set; }
         public string Pronunciation { get; set; }
