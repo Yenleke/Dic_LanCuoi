@@ -63,6 +63,16 @@ namespace Dic_AppTest.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap flip {
+            get {
+                object obj = ResourceManager.GetObject("flip", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap his_bgr {
             get {
                 object obj = ResourceManager.GetObject("his_bgr", resourceCulture);
@@ -73,9 +83,29 @@ namespace Dic_AppTest.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_flip_60 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-flip-60", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap R {
             get {
                 object obj = ResourceManager.GetObject("R", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap R1 {
+            get {
+                object obj = ResourceManager.GetObject("R1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

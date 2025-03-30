@@ -1,4 +1,4 @@
-﻿using OfficeOpenXml;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
 using System.Collections;
+using System.Drawing.Text;
 
 namespace Dic_AppTest
 {
@@ -14,18 +15,34 @@ namespace Dic_AppTest
         string excelpath = "dictionary_fully_unique_sentences.xlsx";
         public List<WordEntry> diction = new List<WordEntry>();
         bool isAnhViet = true;
-
+        public static string ten = "";
+        private User userHienTai;
         public FrmMain()
         {
+            LogIn();
             InitializeComponent();
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             new SetupTextup(txtNhap, "Type here to search...");
         }
+        private void LogIn()
+        {
+            Log_in dangNhap = new Log_in();
+            if(dangNhap.ShowDialog() == DialogResult.OK)
+            {
+                userHienTai = Log_in.loginUser;
+            }
+            else
+            {
+                this.Close();
+            }
+        }
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            lbuserName.Text = ten;
             ImportExcel(excelpath);
             SetupAutoComplete();
         }
+
         public bool Search(string searchText, Action<string, string, string, string, string, string> updateUI)
         {
             if (string.IsNullOrWhiteSpace(searchText))
@@ -39,7 +56,6 @@ namespace Dic_AppTest
             WordEntry result = isAnhViet
                 ? diction.FirstOrDefault(d => d.English.ToLower() == searchText)
                 : diction.FirstOrDefault(d => d.Meaning.ToLower().Contains(searchText));
-            
 
             if (result != null)
             {
@@ -60,25 +76,17 @@ namespace Dic_AppTest
             }
         }
 
-       
-
         private void SetupAutoComplete()
         {
-            
             txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;
-           
+
             AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
             txtNhap.AutoCompleteCustomSource.Clear();
             foreach (var word in diction)
             {
-                if (isAnhViet)
-                { 
-                    autoCompleteCollection.Add(word.English); 
-                }
-                else {
-                    autoCompleteCollection.Add(word.Meaning);
-                }
+
+                autoCompleteCollection.Add(isAnhViet ? word.English : word.Meaning);
             }
 
             txtNhap.AutoCompleteCustomSource = autoCompleteCollection;
@@ -94,7 +102,6 @@ namespace Dic_AppTest
             lbViDu2.Visible = true;
             label4.Visible = true;
         }
-        
 
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -132,7 +139,7 @@ namespace Dic_AppTest
                     int rowCount = worksheet.Dimension.End.Row;
                     int colCount = worksheet.Dimension.End.Column;
 
-                    for (int i = 2; i <= rowCount; i++)  // Bỏ qua dòng tiêu đề
+                    for (int i = 2; i <= rowCount; i++)
                     {
                         string English = worksheet.Cells[i, 1].Value?.ToString()?.Trim() ?? "";
                         string Pronunciation = worksheet.Cells[i, 2].Value?.ToString()?.Trim() ?? "";
@@ -154,12 +161,12 @@ namespace Dic_AppTest
                             });
                         }
                     }
-                }             
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Lỗi khi import Excel: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }     
+            }
         }
 
         private void ImportWord(string filePath)
@@ -170,7 +177,7 @@ namespace Dic_AppTest
             {
                 doc = wordApp.Documents.Open(filePath, ReadOnly: true);
                 string text = doc.Content.Text;
-              
+
                 string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string line in lines)
                 {
@@ -192,7 +199,6 @@ namespace Dic_AppTest
                 MessageBox.Show("Import thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Cập nhật giao diện ngay lập tức
                 SetupAutoComplete();
-              
             }
             catch (Exception ex)
             {
@@ -212,7 +218,8 @@ namespace Dic_AppTest
             SetupAutoComplete();
         }
 
-        public void Search()
+
+        private void btSearch_Click_1(object sender, EventArgs e)
         {
 
             Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
@@ -223,7 +230,32 @@ namespace Dic_AppTest
                 lbNghia.Text = word2;
                 lbViDu1.Text = example1;
                 lbViDu2.Text = example2;
-                hienThi();
+            });
+            hienThi();
+            string searchWord = txtNhap.Text.Trim();
+            if (!string.IsNullOrEmpty(searchWord))
+            {
+                // Ghi từ vào file Excel
+                SaveSearchToHistory(searchWord);
+
+                // Nếu form lịch sử đang mở, cập nhật luôn
+                if (history != null && !history.IsDisposed)
+                {
+                    history.LoadHistoryFromExcel();
+                }
+            }
+        }
+
+        private void Search()
+        {
+            Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
+            {
+                LbTiengAnh.Text = word1;
+                lbPhienAm.Text = pronunciation;
+                lbTuLoai.Text = wordType;
+                lbNghia.Text = word2;
+                lbViDu1.Text = example1;
+                lbViDu2.Text = example2;
             });
             string searchWord = txtNhap.Text.Trim();
             if (!string.IsNullOrEmpty(searchWord))
@@ -238,27 +270,16 @@ namespace Dic_AppTest
                 }
             }
         }
-     
 
-        private void btSearch_Click_1(object sender, EventArgs e)
-        {
-            Search();
-
-        }
 
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            switch ((keyData)
-)
+            switch (keyData)
             {
-                case Keys.Enter:
-                    Search();
-
-                    break;
-                default:
-                    break;
+                case Keys.Enter: Search(); break;
+                default: break;
             }
-            return false;
+            return base.ProcessDialogKey(keyData);
         }
 
         private History history;
@@ -337,16 +358,17 @@ namespace Dic_AppTest
             }
         }
 
-        private void btSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
 
+        private void txtNhap_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                Search();
+                e.Handled = true;
+            }
         }
 
-        private void lbViDu2_Click(object sender, EventArgs e)
-        {
 
-        }
+
     }
-
-
 }
