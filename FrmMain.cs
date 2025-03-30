@@ -1,4 +1,4 @@
-﻿using OfficeOpenXml;
+using OfficeOpenXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,12 +20,13 @@ namespace Dic_AppTest
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             new SetupTextup(txtNhap, "Type here to search...");
         }
+
         private void FrmMain_Load(object sender, EventArgs e)
         {
             ImportExcel(excelpath);
             SetupAutoComplete();
         }
-       
+
         public bool Search(string searchText, Action<string, string, string, string, string, string> updateUI)
         {
             if (string.IsNullOrWhiteSpace(searchText))
@@ -59,11 +60,8 @@ namespace Dic_AppTest
             }
         }
 
-
-
         private void SetupAutoComplete()
         {
-
             txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;
 
@@ -71,14 +69,7 @@ namespace Dic_AppTest
             txtNhap.AutoCompleteCustomSource.Clear();
             foreach (var word in diction)
             {
-                if (isAnhViet)
-                {
-                    autoCompleteCollection.Add(word.English);
-                }
-                else
-                {
-                    autoCompleteCollection.Add(word.Meaning);
-                }
+                autoCompleteCollection.Add(isAnhViet ? word.English : word.Meaning);
             }
 
             txtNhap.AutoCompleteCustomSource = autoCompleteCollection;
@@ -94,7 +85,6 @@ namespace Dic_AppTest
             lbViDu2.Visible = true;
             label4.Visible = true;
         }
-
 
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -130,29 +120,18 @@ namespace Dic_AppTest
                     }
 
                     int rowCount = worksheet.Dimension.End.Row;
-                    int colCount = worksheet.Dimension.End.Column;
 
-                    for (int i = 2; i <= rowCount; i++)  // Bỏ qua dòng tiêu đề
+                    for (int i = 2; i <= rowCount; i++)
                     {
-                        string English = worksheet.Cells[i, 1].Value?.ToString()?.Trim() ?? "";
-                        string Pronunciation = worksheet.Cells[i, 2].Value?.ToString()?.Trim() ?? "";
-                        string WordType = worksheet.Cells[i, 3].Value?.ToString()?.Trim() ?? "";
-                        string Meaning = worksheet.Cells[i, 4].Value?.ToString()?.Trim() ?? "";
-                        string Example1 = worksheet.Cells[i, 5].Value?.ToString()?.Trim() ?? "";
-                        string Example2 = worksheet.Cells[i, 6].Value?.ToString()?.Trim() ?? "";
-
-                        if (!string.IsNullOrEmpty(English))  // Chỉ thêm nếu có dữ liệu
+                        diction.Add(new WordEntry()
                         {
-                            diction.Add(new WordEntry()
-                            {
-                                English = English,
-                                Pronunciation = Pronunciation,
-                                WordType = WordType,
-                                Meaning = Meaning,
-                                Example1 = Example1,
-                                Example2 = Example2
-                            });
-                        }
+                            English = worksheet.Cells[i, 1].Text,
+                            Pronunciation = worksheet.Cells[i, 2].Text,
+                            WordType = worksheet.Cells[i, 3].Text,
+                            Meaning = worksheet.Cells[i, 4].Text,
+                            Example1 = worksheet.Cells[i, 5].Text,
+                            Example2 = worksheet.Cells[i, 6].Text
+                        });
                     }
                 }
             }
@@ -188,11 +167,7 @@ namespace Dic_AppTest
                         });
                     }
                 }
-
-                MessageBox.Show("Import thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Cập nhật giao diện ngay lập tức
                 SetupAutoComplete();
-
             }
             catch (Exception ex)
             {
@@ -212,10 +187,8 @@ namespace Dic_AppTest
             SetupAutoComplete();
         }
 
-
         private void btSearch_Click_1(object sender, EventArgs e)
         {
-
             Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
             {
                 LbTiengAnh.Text = word1;
@@ -226,111 +199,6 @@ namespace Dic_AppTest
                 lbViDu2.Text = example2;
                 hienThi();
             });
-            string searchWord = txtNhap.Text.Trim();
-            if (!string.IsNullOrEmpty(searchWord))
-            {
-                // Ghi từ vào file Excel
-                SaveSearchToHistory(searchWord);
-
-                // Nếu form lịch sử đang mở, cập nhật luôn
-                if (history != null && !history.IsDisposed)
-                {
-                    history.LoadHistoryFromExcel();
-                }
-            }
-
-        }
-        private History history;
-
-
-        private void ThêmTừToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Sub_AddWord add = new Sub_AddWord();
-            add.ShowDialog();
-        }
-
-        private void SửaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Sub_EditWord edit = new Sub_EditWord(this);
-            edit.ShowDialog();
-
-        }
-
-
-        private void LoadToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            this.Hide(); // Ẩn form hiện tại thay vì đóng
-            FrmMain newForm = new FrmMain();
-            newForm.ShowDialog(); // Hiển thị form mới ở chế độ modal
-            this.Close(); // Đóng form cũ sau khi form mới đóng lại
-        }
-
-        private void XóaTừToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Delete_Word delete = new Delete_Word();
-            delete.ShowDialog();
-        }
-      
-        private void SaveSearchToHistory(string word)
-        {
-            try
-            {
-                string filePath = "search_history.xlsx";
-
-                // Đảm bảo thư viện EPPlus có thể sử dụng
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
-                using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
-                {
-                    var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("History");
-
-                    // Tìm dòng trống tiếp theo
-                    int nextRow = worksheet.Dimension?.Rows + 1 ?? 2;
-
-                    // Nếu là lần đầu tiên, thêm tiêu đề
-                    if (nextRow == 2 && worksheet.Cells["A1"].Value == null)
-                    {
-                        worksheet.Cells[1, 1].Value = "";
-                    }
-
-                    // Ghi từ vào dòng tiếp theo
-                    worksheet.Cells[nextRow, 1].Value = word;
-
-                    // Lưu lại file
-                    package.SaveAs(new FileInfo(filePath));
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi khi lưu lịch sử: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void lịchSửTìmKiếmToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            History historyForm = new History();
-            historyForm.Show();
-        }
-
-        private void flashCardToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Frm_FlashCard fl = new Frm_FlashCard();
-            fl.Show();
-        }
-
-      
-    }
-
-    internal class SetupTextup
-    {
-        private TextBox txtNhap;
-        private string v;
-
-        public SetupTextup(TextBox txtNhap, string v)
-        {
-            this.txtNhap = txtNhap;
-            this.v = v;
         }
     }
 }
