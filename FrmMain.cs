@@ -7,6 +7,9 @@ using System.Windows.Forms;
 using Microsoft.Office.Interop.Word;
 using System.Collections;
 using System.Drawing.Text;
+using System.Drawing;
+
+
 
 namespace Dic_AppTest
 {
@@ -15,30 +18,40 @@ namespace Dic_AppTest
         string excelpath = "dictionary_fully_unique_sentences.xlsx";
         public List<WordEntry> diction = new List<WordEntry>();
         bool isAnhViet = true;
+        public static bool isLoggin = false;
         public static string ten = "";
-        private User userHienTai;
         public FrmMain()
         {
-            LogIn();
-            InitializeComponent();
-            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+           
+       InitializeComponent();
+            if (!isLoggin)
+            {
+                LogIn();
+                
+                isLoggin = true;
+            }
+                
+            
+                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             new SetupTextup(txtNhap, "Type here to search...");
         }
+
+
         private void LogIn()
         {
             Log_in dangNhap = new Log_in();
-            if(dangNhap.ShowDialog() == DialogResult.OK)
-            {
-                userHienTai = Log_in.loginUser;
-            }
-            else
-            {
-                this.Close();
-            }
+            dangNhap.ShowDialog();    
+            if (dangNhap.ShowDialog() != DialogResult.OK)
+                {
+                System.Windows.Forms.Application.Exit();
+                
+                    return;
+                }
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-            lbuserName.Text = ten;
+
+            lbuserName.Text = ten;       
             ImportExcel(excelpath);
             SetupAutoComplete();
         }
