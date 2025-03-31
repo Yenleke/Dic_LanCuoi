@@ -37,9 +37,20 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.roundedPanel1 = new Dic_AppTest.RoundedPanel();
+            this.lbTiengAnh = new System.Windows.Forms.Label();
+            this.lbPhienAm = new System.Windows.Forms.Label();
+            this.lbTuLoai = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbNghia = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lbVidu1 = new System.Windows.Forms.Label();
+            this.lbVidu2 = new System.Windows.Forms.Label();
+            this.btTuMoi = new System.Windows.Forms.Button();
+            this.flip = new System.Windows.Forms.PictureBox();
+            this.panelBack = new Dic_AppTest.Panel();
+            this.panelFront = new Dic_AppTest.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.roundedPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.flip)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
@@ -55,10 +66,9 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::Dic_AppTest.Properties.Resources._905555;
             this.pictureBox1.Location = new System.Drawing.Point(314, 163);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 51);
+            this.pictureBox1.Size = new System.Drawing.Size(10, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
@@ -137,39 +147,168 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "exclamation, noun";
             // 
-            // roundedPanel1
+            // lbTiengAnh
             // 
-            this.roundedPanel1.BackColor = System.Drawing.Color.MintCream;
-            this.roundedPanel1.Controls.Add(this.label9);
-            this.roundedPanel1.Controls.Add(this.label4);
-            this.roundedPanel1.Controls.Add(this.label6);
-            this.roundedPanel1.Controls.Add(this.label2);
-            this.roundedPanel1.Controls.Add(this.label8);
-            this.roundedPanel1.Controls.Add(this.pictureBox1);
-            this.roundedPanel1.Controls.Add(this.label1);
-            this.roundedPanel1.Controls.Add(this.label7);
-            this.roundedPanel1.Controls.Add(this.label5);
-            this.roundedPanel1.CornerRadius = 20;
-            this.roundedPanel1.Location = new System.Drawing.Point(55, 106);
-            this.roundedPanel1.Name = "roundedPanel1";
-            this.roundedPanel1.Size = new System.Drawing.Size(958, 433);
-            this.roundedPanel1.TabIndex = 9;
+            this.lbTiengAnh.AutoSize = true;
+            this.lbTiengAnh.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbTiengAnh.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTiengAnh.Location = new System.Drawing.Point(360, 226);
+            this.lbTiengAnh.Name = "lbTiengAnh";
+            this.lbTiengAnh.Size = new System.Drawing.Size(299, 108);
+            this.lbTiengAnh.TabIndex = 1;
+            this.lbTiengAnh.Text = "label3";
+            // 
+            // lbPhienAm
+            // 
+            this.lbPhienAm.AutoSize = true;
+            this.lbPhienAm.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbPhienAm.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPhienAm.Location = new System.Drawing.Point(368, 367);
+            this.lbPhienAm.Name = "lbPhienAm";
+            this.lbPhienAm.Size = new System.Drawing.Size(152, 55);
+            this.lbPhienAm.TabIndex = 3;
+            this.lbPhienAm.Text = "label3";
+            // 
+            // lbTuLoai
+            // 
+            this.lbTuLoai.AutoSize = true;
+            this.lbTuLoai.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbTuLoai.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTuLoai.Location = new System.Drawing.Point(368, 437);
+            this.lbTuLoai.Name = "lbTuLoai";
+            this.lbTuLoai.Size = new System.Drawing.Size(179, 55);
+            this.lbTuLoai.TabIndex = 4;
+            this.lbTuLoai.Text = "label10";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(89, 91);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(278, 55);
+            this.label3.TabIndex = 22;
+            this.label3.Text = "Định nghĩa:";
+            this.label3.Visible = false;
+            // 
+            // lbNghia
+            // 
+            this.lbNghia.AutoSize = true;
+            this.lbNghia.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbNghia.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNghia.Location = new System.Drawing.Point(171, 169);
+            this.lbNghia.Name = "lbNghia";
+            this.lbNghia.Size = new System.Drawing.Size(102, 37);
+            this.lbNghia.TabIndex = 23;
+            this.lbNghia.Text = "label3";
+            this.lbNghia.Visible = false;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(89, 246);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(160, 55);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Ví Dụ:";
+            this.label10.Visible = false;
+            // 
+            // lbVidu1
+            // 
+            this.lbVidu1.AutoSize = true;
+            this.lbVidu1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbVidu1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVidu1.Location = new System.Drawing.Point(171, 316);
+            this.lbVidu1.Name = "lbVidu1";
+            this.lbVidu1.Size = new System.Drawing.Size(102, 37);
+            this.lbVidu1.TabIndex = 25;
+            this.lbVidu1.Text = "label3";
+            this.lbVidu1.Visible = false;
+            // 
+            // lbVidu2
+            // 
+            this.lbVidu2.AutoSize = true;
+            this.lbVidu2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.lbVidu2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVidu2.Location = new System.Drawing.Point(171, 422);
+            this.lbVidu2.Name = "lbVidu2";
+            this.lbVidu2.Size = new System.Drawing.Size(102, 37);
+            this.lbVidu2.TabIndex = 26;
+            this.lbVidu2.Text = "label3";
+            this.lbVidu2.Visible = false;
+            // 
+            // btTuMoi
+            // 
+            this.btTuMoi.Location = new System.Drawing.Point(882, 104);
+            this.btTuMoi.Name = "btTuMoi";
+            this.btTuMoi.Size = new System.Drawing.Size(112, 47);
+            this.btTuMoi.TabIndex = 27;
+            this.btTuMoi.Text = "Từ mới";
+            this.btTuMoi.UseVisualStyleBackColor = true;
+            this.btTuMoi.Click += new System.EventHandler(this.btTuMoi_Click);
+            // 
+            // flip
+            // 
+            this.flip.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.flip.Image = global::Dic_AppTest.Properties.Resources.icons8_flip_60;
+            this.flip.Location = new System.Drawing.Point(904, 531);
+            this.flip.Name = "flip";
+            this.flip.Size = new System.Drawing.Size(90, 51);
+            this.flip.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.flip.TabIndex = 28;
+            this.flip.TabStop = false;
+            this.flip.Click += new System.EventHandler(this.flip_Click_1);
+            // 
+            // panelBack
+            // 
+            this.panelBack.BackColor = System.Drawing.Color.White;
+            this.panelBack.CornerRadius = 20;
+            this.panelBack.Location = new System.Drawing.Point(80, 72);
+            this.panelBack.Name = "panelBack";
+            this.panelBack.Size = new System.Drawing.Size(985, 531);
+            this.panelBack.TabIndex = 21;
+            // 
+            // panelFront
+            // 
+            this.panelFront.BackColor = System.Drawing.Color.White;
+            this.panelFront.CornerRadius = 20;
+            this.panelFront.Location = new System.Drawing.Point(80, 72);
+            this.panelFront.Name = "panelFront";
+            this.panelFront.Size = new System.Drawing.Size(985, 531);
+            this.panelFront.TabIndex = 0;
             // 
             // Frm_FlashCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.PaleTurquoise;
-            this.ClientSize = new System.Drawing.Size(1073, 619);
-            this.Controls.Add(this.roundedPanel1);
+            this.ClientSize = new System.Drawing.Size(1152, 698);
+            this.Controls.Add(this.flip);
+            this.Controls.Add(this.btTuMoi);
+            this.Controls.Add(this.lbVidu2);
+            this.Controls.Add(this.lbVidu1);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lbNghia);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panelBack);
+            this.Controls.Add(this.lbTuLoai);
+            this.Controls.Add(this.lbPhienAm);
+            this.Controls.Add(this.lbTiengAnh);
+            this.Controls.Add(this.panelFront);
+            this.DoubleBuffered = true;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Frm_FlashCard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Frm_FlashCard";
             this.Load += new System.EventHandler(this.Frm_FlashCard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.roundedPanel1.ResumeLayout(false);
-            this.roundedPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.flip)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -184,6 +323,17 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
-        private RoundedPanel roundedPanel1;
+        private Panel panelFront;
+        private System.Windows.Forms.Label lbTiengAnh;
+        private System.Windows.Forms.Label lbPhienAm;
+        private System.Windows.Forms.Label lbTuLoai;
+        private Panel panelBack;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lbNghia;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbVidu1;
+        private System.Windows.Forms.Label lbVidu2;
+        private System.Windows.Forms.Button btTuMoi;
+        private System.Windows.Forms.PictureBox flip;
     }
 }
