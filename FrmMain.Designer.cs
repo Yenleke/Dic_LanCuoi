@@ -312,9 +312,9 @@
             this.lbuserName.BackColor = System.Drawing.Color.LightSteelBlue;
             this.lbuserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbuserName.ForeColor = System.Drawing.Color.Black;
-            this.lbuserName.Location = new System.Drawing.Point(955, 0);
+            this.lbuserName.Location = new System.Drawing.Point(1069, 0);
             this.lbuserName.Name = "lbuserName";
-            this.lbuserName.Size = new System.Drawing.Size(167, 32);
+            this.lbuserName.Size = new System.Drawing.Size(206, 32);
             this.lbuserName.TabIndex = 25;
             this.lbuserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
