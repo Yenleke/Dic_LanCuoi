@@ -312,15 +312,7 @@ namespace Dic_AppTest
             Delete_Word delete = new Delete_Word();
             delete.ShowDialog();
         }
-        private void LichSuToolstrip_Click(object sender, EventArgs e)
-        {
-            History historyForm = new History();
-            historyForm.Show();
-        }
-        private void pnHis_Load(object sender, EventArgs e)
-        {
-
-        }
+       
 
         private void SaveSearchToHistory(string word)
         {
@@ -368,7 +360,17 @@ namespace Dic_AppTest
             }
         }
 
+        private void hIstoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            History historyForm = new History();
+            historyForm.Show();
 
+        }
 
+        private void flashCardsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Frm_FlashCard fl = new Frm_FlashCard();
+            fl.Show();
+        }
     }
 }
