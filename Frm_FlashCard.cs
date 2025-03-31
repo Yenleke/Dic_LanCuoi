@@ -18,24 +18,37 @@ namespace Dic_AppTest
 
         public Frm_FlashCard()
         {
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             InitializeComponent();
             flipTimer.Interval = 1;
-            flipTimer.Tick += FlipAnimation;
+        
+        flipTimer.Tick += FlipAnimation;
         }
 
         private void Frm_FlashCard_Load(object sender, EventArgs e)
         {
             ImportExcel(excelpath);
-            // Thêm lại control vào panelBack (chỉ chạy nếu bị lỗi)
+            //Thêm lại control vào panelBack(chỉ chạy nếu bị lỗi)
             panelBack.Controls.Clear();
             if (panelBack.Controls.Count == 0)
             {
                 panelBack.Controls.Add(lbNghia);
                 panelBack.Controls.Add(lbVidu1);
                 panelBack.Controls.Add(lbVidu2);
-                panelBack.Controls.Add(label4);
-                panelBack.Controls.Add(label6);
+                panelBack.Controls.Add(label3);
+                panelBack.Controls.Add(label10);
             }
+            int index = rnd.Next(diction.Count);
+            WordEntry selectedWord = diction[index];
+
+            lbTiengAnh.Text = selectedWord.English;
+            lbPhienAm.Text = selectedWord.Pronunciation;
+            lbTuLoai.Text = selectedWord.WordType;
+            lbNghia.Text = selectedWord.Meaning;
+            lbVidu1.Text = selectedWord.Example1;
+            lbVidu2.Text = selectedWord.Example2;
+
+            isFlipped = false;
             ResetCard();
         }
 
@@ -83,7 +96,7 @@ namespace Dic_AppTest
             }
         }
 
-       
+
 
         private void ResetCard()
         {
@@ -145,25 +158,8 @@ namespace Dic_AppTest
         }
 
 
-        private void flip_Click(object sender, EventArgs e)
+        private void btTuMoi_Click(object sender, EventArgs e)
         {
-            flipStep = 0;
-
-            // Nếu đang lật sang mặt sau, đảm bảo nội dung của panelBack hiển thị
-            if (!isFlipped)
-            {
-                foreach (Control ctrl in panelBack.Controls)
-                {
-                    ctrl.Visible = true;
-                }
-            }
-
-            flipTimer.Start();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
             if (diction.Count == 0)
             {
                 MessageBox.Show("Không có từ nào trong danh sách!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -182,6 +178,23 @@ namespace Dic_AppTest
 
             isFlipped = false;
             ResetCard();
+        }
+
+        private void flip_Click_1(object sender, EventArgs e)
+        {
+            flipStep = 0;
+
+            // Nếu đang lật sang mặt sau, đảm bảo nội dung của panelBack hiển thị
+            if (!isFlipped)
+            {
+                foreach (Control ctrl in panelBack.Controls)
+                {
+                    ctrl.Visible = true;
+                }
+            }
+
+            flipTimer.Start();
+
         }
     }
 }
