@@ -43,7 +43,7 @@ namespace Dic_AppTest
 
         private void Log_in_Paint(object sender, PaintEventArgs e)
         {
-            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle, Color.SteelBlue, Color.White, 90);
+            LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle, Color.LightSteelBlue, Color.White, 90);
             e.Graphics.FillRectangle(linearGradientBrush, this.ClientRectangle);
         }
         private void Log_in_FormClosing(object sender, FormClosingEventArgs e)

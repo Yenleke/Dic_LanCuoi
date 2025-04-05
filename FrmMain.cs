@@ -23,19 +23,15 @@ namespace Dic_AppTest
         public FrmMain()
         {
            
-       InitializeComponent();
+            InitializeComponent();
             if (!isLoggin)
             {
-                LogIn();
-                
+                LogIn();               
                 isLoggin = true;
-            }
-                
-            
-                ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
+            }               
+            ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             new SetupTextup(txtNhap, "Type here to search...");
         }
-
 
         private void LogIn()
         {
@@ -43,14 +39,13 @@ namespace Dic_AppTest
             dangNhap.ShowDialog();    
             if (dangNhap.ShowDialog() != DialogResult.OK)
                 {
-                System.Windows.Forms.Application.Exit();
                 
-                    return;
+                dangNhap.Close();
+                return;
                 }
         }
         private void FrmMain_Load(object sender, EventArgs e)
         {
-
             lbuserName.Text = ten;       
             ImportExcel(excelpath);
             SetupAutoComplete();
@@ -235,6 +230,11 @@ namespace Dic_AppTest
         private void btSearch_Click_1(object sender, EventArgs e)
         {
 
+            Found();
+        }
+
+        private void Found()
+        {
             Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
             {
                 LbTiengAnh.Text = word1;
@@ -259,44 +259,18 @@ namespace Dic_AppTest
             }
         }
 
-        private void Search()
-        {
-            Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
-            {
-                LbTiengAnh.Text = word1;
-                lbPhienAm.Text = pronunciation;
-                lbTuLoai.Text = wordType;
-                lbNghia.Text = word2;
-                lbViDu1.Text = example1;
-                lbViDu2.Text = example2;
-            });
-            string searchWord = txtNhap.Text.Trim();
-            if (!string.IsNullOrEmpty(searchWord))
-            {
-                // Ghi từ vào file Excel
-                SaveSearchToHistory(searchWord);
 
-                // Nếu form lịch sử đang mở, cập nhật luôn
-                if (history != null && !history.IsDisposed)
-                {
-                    history.LoadHistoryFromExcel();
-                }
-            }
-        }
-
-
-        protected override bool ProcessDialogKey(Keys keyData)
-        {
-            switch (keyData)
-            {
-                case Keys.Enter: Search(); break;
-                default: break;
-            }
-            return base.ProcessDialogKey(keyData);
-        }
+        //protected override bool ProcessDialogKey(Keys keyData)
+        //{
+        //    switch (keyData)
+        //    {
+        //        case Keys.Enter: Search(); break;
+        //        default: break;
+        //    }
+        //    return false;
+        //}
 
         private History history;
-
 
         private void ThêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -310,7 +284,6 @@ namespace Dic_AppTest
             edit.ShowDialog();
 
         }
-
 
         private void LoadToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -368,7 +341,7 @@ namespace Dic_AppTest
         {
             if (e.KeyCode == Keys.Enter)
             {
-                Search();
+                Found();
                 e.Handled = true;
             }
         }
@@ -385,5 +358,21 @@ namespace Dic_AppTest
             Frm_FlashCard fl = new Frm_FlashCard();
             fl.Show();
         }
+
+        private void BTChange_Click(object sender, EventArgs e)
+        {
+            var confirm = MessageBox.Show("Bạn có chắc muốn đổi User name?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirm == DialogResult.Yes)
+            {
+                this.Hide();
+                isLoggin = false;
+                LogIn();
+                isLoggin = true;
+                lbuserName.Text = ten;
+                this.Show();
+            }
+        }
+
+     
     }
 }
