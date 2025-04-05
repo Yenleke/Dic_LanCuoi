@@ -51,9 +51,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lbuserName = new System.Windows.Forms.Label();
+            this.btSearch = new System.Windows.Forms.Button();
+            this.BTChange = new System.Windows.Forms.Button();
             this.panel2 = new Dic_AppTest.Panel();
             this.panel1 = new Dic_AppTest.Panel();
-            this.btSearch = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@
             this.label2.Dock = System.Windows.Forms.DockStyle.Top;
             this.label2.Font = new System.Drawing.Font("Goudy Stout", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.label2.Location = new System.Drawing.Point(0, 24);
+            this.label2.Location = new System.Drawing.Point(0, 31);
             this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(1275, 163);
@@ -72,9 +73,8 @@
             // 
             // label3
             // 
-            this.label3.BackColor = System.Drawing.Color.LightBlue;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Location = new System.Drawing.Point(0, 187);
+            this.label3.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.label3.Location = new System.Drawing.Point(0, 196);
             this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(1275, 125);
@@ -108,8 +108,9 @@
             // 
             // LbTiengAnh
             // 
-            this.LbTiengAnh.BackColor = System.Drawing.Color.LightBlue;
+            this.LbTiengAnh.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.LbTiengAnh.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LbTiengAnh.ForeColor = System.Drawing.Color.White;
             this.LbTiengAnh.Location = new System.Drawing.Point(134, 351);
             this.LbTiengAnh.Name = "LbTiengAnh";
             this.LbTiengAnh.Size = new System.Drawing.Size(1019, 73);
@@ -120,9 +121,9 @@
             // lbNghia
             // 
             this.lbNghia.AutoSize = true;
-            this.lbNghia.BackColor = System.Drawing.Color.LightBlue;
+            this.lbNghia.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbNghia.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNghia.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.lbNghia.ForeColor = System.Drawing.Color.White;
             this.lbNghia.Location = new System.Drawing.Point(140, 553);
             this.lbNghia.Name = "lbNghia";
             this.lbNghia.Size = new System.Drawing.Size(107, 37);
@@ -133,8 +134,9 @@
             // lbPhienAm
             // 
             this.lbPhienAm.AutoSize = true;
-            this.lbPhienAm.BackColor = System.Drawing.Color.LightBlue;
+            this.lbPhienAm.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbPhienAm.Font = new System.Drawing.Font("Verdana", 14.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPhienAm.ForeColor = System.Drawing.Color.White;
             this.lbPhienAm.Location = new System.Drawing.Point(220, 491);
             this.lbPhienAm.Name = "lbPhienAm";
             this.lbPhienAm.Size = new System.Drawing.Size(97, 23);
@@ -145,8 +147,9 @@
             // lbTuLoai
             // 
             this.lbTuLoai.AutoSize = true;
-            this.lbTuLoai.BackColor = System.Drawing.Color.LightBlue;
+            this.lbTuLoai.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbTuLoai.Font = new System.Drawing.Font("Times New Roman", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTuLoai.ForeColor = System.Drawing.Color.White;
             this.lbTuLoai.Location = new System.Drawing.Point(219, 441);
             this.lbTuLoai.Name = "lbTuLoai";
             this.lbTuLoai.Size = new System.Drawing.Size(98, 33);
@@ -157,8 +160,9 @@
             // lbViDu1
             // 
             this.lbViDu1.AutoSize = true;
-            this.lbViDu1.BackColor = System.Drawing.Color.LightBlue;
+            this.lbViDu1.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbViDu1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbViDu1.ForeColor = System.Drawing.Color.White;
             this.lbViDu1.Location = new System.Drawing.Point(218, 602);
             this.lbViDu1.Name = "lbViDu1";
             this.lbViDu1.Size = new System.Drawing.Size(94, 31);
@@ -169,8 +173,9 @@
             // lbViDu2
             // 
             this.lbViDu2.AutoSize = true;
-            this.lbViDu2.BackColor = System.Drawing.Color.LightBlue;
+            this.lbViDu2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbViDu2.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbViDu2.ForeColor = System.Drawing.Color.White;
             this.lbViDu2.Location = new System.Drawing.Point(218, 636);
             this.lbViDu2.Name = "lbViDu2";
             this.lbViDu2.Size = new System.Drawing.Size(94, 31);
@@ -187,7 +192,7 @@
             this.flashCardsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1275, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1275, 31);
             this.menuStrip1.TabIndex = 22;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -200,61 +205,64 @@
             this.LoadToolStripMenuItem,
             this.toolStripSeparator1,
             this.importFileToolStripMenuItem});
+            this.menuToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
-            this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
+            this.menuToolStripMenuItem.Size = new System.Drawing.Size(69, 27);
             this.menuToolStripMenuItem.Text = "Menu";
             // 
             // ThêmTừToolStripMenuItem
             // 
             this.ThêmTừToolStripMenuItem.Name = "ThêmTừToolStripMenuItem";
-            this.ThêmTừToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.ThêmTừToolStripMenuItem.Size = new System.Drawing.Size(167, 28);
             this.ThêmTừToolStripMenuItem.Text = "Thêm Từ";
             this.ThêmTừToolStripMenuItem.Click += new System.EventHandler(this.ThêmTừToolStripMenuItem_Click);
             // 
             // SửaToolStripMenuItem
             // 
             this.SửaToolStripMenuItem.Name = "SửaToolStripMenuItem";
-            this.SửaToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.SửaToolStripMenuItem.Size = new System.Drawing.Size(167, 28);
             this.SửaToolStripMenuItem.Text = "Sửa Từ";
             this.SửaToolStripMenuItem.Click += new System.EventHandler(this.SửaToolStripMenuItem_Click);
             // 
             // XóaTừToolStripMenuItem
             // 
             this.XóaTừToolStripMenuItem.Name = "XóaTừToolStripMenuItem";
-            this.XóaTừToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.XóaTừToolStripMenuItem.Size = new System.Drawing.Size(167, 28);
             this.XóaTừToolStripMenuItem.Text = "Xóa Từ";
             this.XóaTừToolStripMenuItem.Click += new System.EventHandler(this.XóaTừToolStripMenuItem_Click);
             // 
             // LoadToolStripMenuItem
             // 
             this.LoadToolStripMenuItem.Name = "LoadToolStripMenuItem";
-            this.LoadToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.LoadToolStripMenuItem.Size = new System.Drawing.Size(167, 28);
             this.LoadToolStripMenuItem.Text = "Load";
             this.LoadToolStripMenuItem.Click += new System.EventHandler(this.LoadToolStripMenuItem_Click_1);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(126, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(164, 6);
             // 
             // importFileToolStripMenuItem
             // 
             this.importFileToolStripMenuItem.Name = "importFileToolStripMenuItem";
-            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(129, 22);
+            this.importFileToolStripMenuItem.Size = new System.Drawing.Size(167, 28);
             this.importFileToolStripMenuItem.Text = "Import file";
             this.importFileToolStripMenuItem.Click += new System.EventHandler(this.importFileToolStripMenuItem_Click);
             // 
             // hIstoryToolStripMenuItem
             // 
+            this.hIstoryToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hIstoryToolStripMenuItem.Name = "hIstoryToolStripMenuItem";
-            this.hIstoryToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.hIstoryToolStripMenuItem.Size = new System.Drawing.Size(79, 27);
             this.hIstoryToolStripMenuItem.Text = "History";
             this.hIstoryToolStripMenuItem.Click += new System.EventHandler(this.hIstoryToolStripMenuItem_Click);
             // 
             // flashCardsToolStripMenuItem
             // 
+            this.flashCardsToolStripMenuItem.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flashCardsToolStripMenuItem.Name = "flashCardsToolStripMenuItem";
-            this.flashCardsToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.flashCardsToolStripMenuItem.Size = new System.Drawing.Size(112, 27);
             this.flashCardsToolStripMenuItem.Text = "FlashCards";
             this.flashCardsToolStripMenuItem.Click += new System.EventHandler(this.flashCardsToolStripMenuItem_Click);
             // 
@@ -277,18 +285,49 @@
             // 
             // lbuserName
             // 
-            this.lbuserName.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.lbuserName.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.lbuserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbuserName.ForeColor = System.Drawing.Color.Black;
-            this.lbuserName.Location = new System.Drawing.Point(1044, 0);
+            this.lbuserName.ForeColor = System.Drawing.Color.White;
+            this.lbuserName.Location = new System.Drawing.Point(904, 0);
             this.lbuserName.Name = "lbuserName";
-            this.lbuserName.Size = new System.Drawing.Size(167, 34);
+            this.lbuserName.Size = new System.Drawing.Size(237, 34);
             this.lbuserName.TabIndex = 25;
             this.lbuserName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // btSearch
+            // 
+            this.btSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btSearch.BackColor = System.Drawing.Color.White;
+            this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R;
+            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btSearch.FlatAppearance.BorderSize = 0;
+            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btSearch.Location = new System.Drawing.Point(1131, 227);
+            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
+            this.btSearch.Name = "btSearch";
+            this.btSearch.Size = new System.Drawing.Size(110, 56);
+            this.btSearch.TabIndex = 23;
+            this.btSearch.UseVisualStyleBackColor = false;
+            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
+            // 
+            // BTChange
+            // 
+            this.BTChange.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.BTChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTChange.ForeColor = System.Drawing.Color.Navy;
+            this.BTChange.Location = new System.Drawing.Point(1131, 0);
+            this.BTChange.Name = "BTChange";
+            this.BTChange.Size = new System.Drawing.Size(144, 34);
+            this.BTChange.TabIndex = 26;
+            this.BTChange.Text = "Change Username";
+            this.BTChange.UseVisualStyleBackColor = false;
+            this.BTChange.Click += new System.EventHandler(this.BTChange_Click);
+            // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.LightBlue;
+            this.panel2.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel2.CornerRadius = 20;
             this.panel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel2.Location = new System.Drawing.Point(109, 337);
@@ -308,30 +347,12 @@
             this.panel1.Size = new System.Drawing.Size(1226, 76);
             this.panel1.TabIndex = 11;
             // 
-            // btSearch
-            // 
-            this.btSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btSearch.AutoSize = true;
-            this.btSearch.BackColor = System.Drawing.Color.White;
-            this.btSearch.BackgroundImage = global::Dic_AppTest.Properties.Resources.R;
-            this.btSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btSearch.FlatAppearance.BorderSize = 0;
-            this.btSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btSearch.Location = new System.Drawing.Point(1131, 227);
-            this.btSearch.Margin = new System.Windows.Forms.Padding(6);
-            this.btSearch.Name = "btSearch";
-            this.btSearch.Size = new System.Drawing.Size(110, 56);
-            this.btSearch.TabIndex = 23;
-            this.btSearch.UseVisualStyleBackColor = false;
-            this.btSearch.Click += new System.EventHandler(this.btSearch_Click_1);
-            // 
             // FrmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1275, 697);
+            this.Controls.Add(this.BTChange);
             this.Controls.Add(this.lbuserName);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
@@ -357,7 +378,6 @@
             this.Name = "FrmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DICTIONARY";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -394,6 +414,7 @@
         private System.Windows.Forms.Label lbuserName;
         private System.Windows.Forms.ToolStripMenuItem hIstoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem flashCardsToolStripMenuItem;
+        private System.Windows.Forms.Button BTChange;
     }
 }
 
