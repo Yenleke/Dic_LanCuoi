@@ -12,6 +12,7 @@ namespace Dic_AppTest
         public Sub_AddWord()
         {
             InitializeComponent();
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -155,6 +156,11 @@ namespace Dic_AppTest
         }
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panel1_Load(object sender, EventArgs e)
         {
 
         }
