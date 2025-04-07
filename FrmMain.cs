@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using Microsoft.Office.Interop.Word;
 using System.Collections;
 using System.Drawing.Text;
 using System.Drawing;
@@ -125,10 +124,7 @@ namespace Dic_AppTest
                 {
                     ImportExcel(epath);
                 }
-                else if (extension == ".docx")
-                {
-                    ImportWord(epath);
-                }
+              
             }
         }
 
@@ -178,48 +174,7 @@ namespace Dic_AppTest
             }
         }
 
-        private void ImportWord(string filePath)
-        {
-            Microsoft.Office.Interop.Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
-            Microsoft.Office.Interop.Word.Document doc = null;
-            try
-            {
-                doc = wordApp.Documents.Open(filePath, ReadOnly: true);
-                string text = doc.Content.Text;
-
-                string[] lines = text.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string line in lines)
-                {
-                    string[] parts = line.Split(';');
-                    if (parts.Length >= 4)
-                    {
-                        diction.Add(new WordEntry()
-                        {
-                            English = parts[0].Trim(),
-                            Pronunciation = parts[1].Trim(),
-                            WordType = parts[2].Trim(),
-                            Meaning = parts[3].Trim(),
-                            Example1 = parts.Length > 4 ? parts[4].Trim() : "",
-                            Example2 = parts.Length > 5 ? parts[5].Trim() : ""
-                        });
-                    }
-                }
-
-                MessageBox.Show("Import thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                // Cập nhật giao diện ngay lập tức
-                SetupAutoComplete();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Lỗi khi import Word: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                doc?.Close();
-                wordApp.Quit();
-            }
-        }
-
+       
         private void btSwitch_Click_1(object sender, EventArgs e)
         {
             isAnhViet = !isAnhViet;
