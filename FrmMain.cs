@@ -8,7 +8,8 @@ using Microsoft.Office.Interop.Word;
 using System.Collections;
 using System.Drawing.Text;
 using System.Drawing;
-
+using static Dic_AppTest.History;
+using Dic_AppTest;
 
 
 namespace Dic_AppTest
@@ -30,9 +31,10 @@ namespace Dic_AppTest
                 isLoggin = true;
             }               
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            new SetupTextup(txtNhap, "Type here to search...");
+            new Set(txtNhap, "Type here to search...");
+            
         }
-
+       
         private void LogIn()
         {
             Log_in dangNhap = new Log_in();
@@ -49,10 +51,15 @@ namespace Dic_AppTest
             lbuserName.Text = ten;       
             ImportExcel(excelpath);
             SetupAutoComplete();
+           
+            RoundedControl.SetRoundedRegion(this, 10);
+            LbTiengAnh.Text=lbNghia.Text = lbPhienAm.Text = lbTuLoai.Text = lbViDu1.Text = lbViDu2.Text = "";
+            label4.BackColor = panel2.BackColor;
         }
 
-        public bool Search(string searchText, Action<string, string, string, string, string, string> updateUI)
+        public bool Search(string searchText, bool i, Action<WordEntry> updateUI)
         {
+            
             if (string.IsNullOrWhiteSpace(searchText))
             {
                 MessageBox.Show("Vui lòng nhập từ cần tìm!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -61,20 +68,13 @@ namespace Dic_AppTest
 
             searchText = searchText.Trim().ToLower();
 
-            WordEntry result = isAnhViet
+            WordEntry result = i
                 ? diction.FirstOrDefault(d => d.English.ToLower() == searchText)
                 : diction.FirstOrDefault(d => d.Meaning.ToLower().Contains(searchText));
 
             if (result != null)
             {
-                if (isAnhViet)
-                {
-                    updateUI(result.English, result.Pronunciation, result.WordType, result.Meaning, result.Example1, result.Example2);
-                }
-                else
-                {
-                    updateUI(result.Meaning, result.Pronunciation, result.WordType, result.English, result.Example1, result.Example2);
-                }
+                updateUI(result);
                 return true;
             }
             else
@@ -84,7 +84,7 @@ namespace Dic_AppTest
             }
         }
 
-        private void SetupAutoComplete()
+        public void SetupAutoComplete()
         {
             txtNhap.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
             txtNhap.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -109,6 +109,7 @@ namespace Dic_AppTest
             lbViDu1.Visible = true;
             lbViDu2.Visible = true;
             label4.Visible = true;
+            label4.BackColor = Color.SteelBlue;
         }
 
         private void importFileToolStripMenuItem_Click(object sender, EventArgs e)
@@ -219,7 +220,7 @@ namespace Dic_AppTest
             }
         }
 
-        public void btSwitch_Click_1(object sender, EventArgs e)
+        private void btSwitch_Click_1(object sender, EventArgs e)
         {
             isAnhViet = !isAnhViet;
             btSwitch.Text = isAnhViet ? "Anh - Việt" : "Việt - Anh";
@@ -229,20 +230,32 @@ namespace Dic_AppTest
 
         private void btSearch_Click_1(object sender, EventArgs e)
         {
-
             Found();
         }
 
         private void Found()
         {
-            Search(txtNhap.Text, (word1, pronunciation, wordType, word2, example1, example2) =>
+            Search(txtNhap.Text, isAnhViet, (result) =>
             {
-                LbTiengAnh.Text = word1;
-                lbPhienAm.Text = pronunciation;
-                lbTuLoai.Text = wordType;
-                lbNghia.Text = word2;
-                lbViDu1.Text = example1;
-                lbViDu2.Text = example2;
+                if (isAnhViet)
+                {
+                    LbTiengAnh.Text = result.English;
+                    lbPhienAm.Text = result.Pronunciation;
+                    lbTuLoai.Text = result.WordType;
+                    lbNghia.Text = result.Meaning;
+                    lbViDu1.Text = result.Example1;
+                    lbViDu2.Text = result.Example2;
+                }
+                else
+                {
+                    LbTiengAnh.Text = result.Meaning;
+                    lbPhienAm.Text = result.Pronunciation;
+                    lbTuLoai.Text = result.WordType;
+                    lbNghia.Text = result.English;
+                    lbViDu1.Text = result.Example1;
+                    lbViDu2.Text = result.Example2;
+                }
+                   
             });
             hienThi();
             string searchWord = txtNhap.Text.Trim();

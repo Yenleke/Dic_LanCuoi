@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Dic_AppTest;
 namespace Dic_AppTest
 {
     public partial class Sub_EditWord : Form
@@ -23,7 +23,7 @@ namespace Dic_AppTest
             InitializeComponent();
             this.frmMain = frmMain;
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            new SetupTextup(txtNhap, "Type here...");
+            new Set(txtNhap, "Type here to search...");
     }
 
         private void btSwitch_Click(object sender, EventArgs e)
@@ -64,20 +64,32 @@ namespace Dic_AppTest
 
         private void btSearch_Click_1(object sender, EventArgs e)
         {
-            string searchText = txtNhap.Text;
 
-            bool found = frmMain.Search(searchText, (word1, pronunciation, wordType, word2, example1, example2) =>
+            frmMain.Search(txtNhap.Text, isAnhViet, (result) =>
             {
-                txtTuVung.Text = word1;
-                txtPhienAm.Text = pronunciation;
-                txtTuloai.Text = wordType;
-                txtNghia.Text = word2;
-                txtVidu1.Text = example1;
-                txtVidu2.Text = example2;
-
+                if (isAnhViet)
+                {
+                    txtTuVung.Text = result.English;
+                    txtPhienAm.Text = result.Pronunciation;
+                    txtTuloai.Text = result.WordType;
+                    txtNghia.Text = result.Meaning;
+                    txtVidu1.Text = result.Example1;
+                    txtVidu2.Text = result.Example2;
+                    hienThi();
+                }
+                else
+                {
+                    txtTuVung.Text = result.Meaning;
+                    txtPhienAm.Text = result.Pronunciation;
+                    txtTuloai.Text = result.WordType;
+                    txtNghia.Text = result.English;
+                    txtVidu1.Text = result.Example1;
+                    txtVidu2.Text = result.Example2;
+                    hienThi();
+                }
 
             });
-            hienThi();
+            
 
         }
         private void hienThi()
