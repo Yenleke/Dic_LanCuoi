@@ -273,17 +273,9 @@ namespace Dic_AppTest
         }
 
 
-        //protected override bool ProcessDialogKey(Keys keyData)
-        //{
-        //    switch (keyData)
-        //    {
-        //        case Keys.Enter: Search(); break;
-        //        default: break;
-        //    }
-        //    return false;
-        //}
+        
 
-        private History history;
+        
 
         private void ThêmTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -306,13 +298,18 @@ namespace Dic_AppTest
             this.Close(); // Đóng form cũ sau khi form mới đóng lại
         }
 
+
+        //Xóa từ
         private void XóaTừToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Delete_Word delete = new Delete_Word();
             delete.ShowDialog();
         }
-       
 
+
+
+        // Tạo file excel để lưu lại lịch sử tìm kiếm
+        private History history;
         private void SaveSearchToHistory(string word)
         {
             try
@@ -322,12 +319,12 @@ namespace Dic_AppTest
                 // Đảm bảo thư viện EPPlus có thể sử dụng
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
-                using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage())
+                using (var package = File.Exists(filePath) ? new ExcelPackage(new FileInfo(filePath)) : new ExcelPackage()) // kiểm tra nếu file đã tt thì mở chưa thì tạo mới
                 {
-                    var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("History");
+                    var worksheet = package.Workbook.Worksheets.FirstOrDefault() ?? package.Workbook.Worksheets.Add("History"); //Lấy worksheet đầu tiên trong file nếu có. khco thì tạo History
 
-                    // Tìm dòng trống tiếp theo
-                    int nextRow = worksheet.Dimension?.Rows + 1 ?? 2;
+                    // Tìm dòng trống tiếp theo, nếu file trống thì mặc định nr = 2, do dòng 1 dùng ghi header
+                    int nextRow = worksheet.Dimension?.Rows + 1 ?? 2; 
 
                     // Nếu là lần đầu tiên, thêm tiêu đề
                     if (nextRow == 2 && worksheet.Cells["A1"].Value == null)
@@ -349,6 +346,13 @@ namespace Dic_AppTest
             }
         }
 
+        private void hIstoryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            History historyForm = new History();
+            historyForm.Show();
+
+        }
+
 
         private void txtNhap_KeyDown(object sender, KeyEventArgs e)
         {
@@ -359,12 +363,7 @@ namespace Dic_AppTest
             }
         }
 
-        private void hIstoryToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            History historyForm = new History();
-            historyForm.Show();
-
-        }
+        
 
         private void flashCardsToolStripMenuItem_Click(object sender, EventArgs e)
         {
