@@ -8,8 +8,8 @@ namespace Dic_AppTest
 {
     public partial class Delete_Word : Form
     {
-        string excelpath = "dictionary_fully_unique_sentences.xlsx";
-        bool isAnhViet = true;
+        string excelpath = "dictionary_fully_unique_sentences.xlsx"; //lấy dữ liệu từ file để xóa
+        bool isAnhViet = true; 
         public Delete_Word()
         {
             InitializeComponent();
@@ -20,20 +20,20 @@ namespace Dic_AppTest
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(txtNhap.Text))
+                if (string.IsNullOrWhiteSpace(txtNhap.Text)) //txt trống thì hiện messagebox
                 {
                     MessageBox.Show("Vui lòng nhập từ cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                if (!File.Exists(excelpath))
+                if (!File.Exists(excelpath)) // không tìm thấy từ trong file thì hiện thông báo
                 {
                     MessageBox.Show("Không tìm thấy file Excel!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
                 FileInfo file = new FileInfo(excelpath);
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                ExcelPackage.LicenseContext = LicenseContext.NonCommercial; // cấu hình EPLUS dùng chỉnh sửa file miễn phí
 
                 bool found = false;
                 int rowToDelete = -1;
@@ -41,8 +41,8 @@ namespace Dic_AppTest
                 using (var package = new ExcelPackage(file))
                 {
                     var worksheet = package.Workbook.Worksheets[0]; // Lấy Sheet đầu tiên
-                    int rowCount = worksheet.Dimension?.Rows ?? 0;
-                    int colCount = worksheet.Dimension?.Columns ?? 0;
+                    int rowCount = worksheet.Dimension?.Rows ?? 0; // Số dòng có dữ liệu
+                    int colCount = worksheet.Dimension?.Columns ?? 0; // Số cột có dữ liệu
 
                     for (int row = 1; row <= rowCount; row++)
                     {
@@ -95,13 +95,14 @@ namespace Dic_AppTest
 
         private void btThoat_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("Bạn có chắc muốn thoát?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.OK)
-            {
-                Close(); // Đóng form nếu người dùng chọn OK
-            }
+            Close();
         }
 
+        private void Delete_Word_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (MessageBox.Show("Bạn muốn đóng form?", "Xác nhận", MessageBoxButtons.OKCancel, MessageBoxIcon.Error) == DialogResult.Cancel)
+                e.Cancel = true;
+        }
     }
 }

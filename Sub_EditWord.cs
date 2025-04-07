@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using Dic_AppTest;
 namespace Dic_AppTest
 {
     public partial class Sub_EditWord : Form
@@ -23,7 +23,7 @@ namespace Dic_AppTest
             InitializeComponent();
             this.frmMain = frmMain; // để lấy diction từ frmMain
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
-            new SetupTextup(txtNhap, "Type here...");
+            new Set(txtNhap, "Type here to search...");
     }
 
         private void btSwitch_Click(object sender, EventArgs e)
@@ -64,9 +64,14 @@ namespace Dic_AppTest
 
         private void btSearch_Click_1(object sender, EventArgs e)
         {
+
             string searchText = txtNhap.Text;
             //truyền vào txtNhap, isAnhViet của Edit, từ đó tìm kiếm result
-            frmMain.Search(searchText, isAnhViet, (result) =>
+
+
+
+            frmMain.Search(txtNhap.Text, isAnhViet, (result) =>
+
             {
                 if (isAnhViet)
                 {
@@ -76,6 +81,10 @@ namespace Dic_AppTest
                     txtNghia.Text = result.Meaning;
                     txtVidu1.Text = result.Example1;
                     txtVidu2.Text = result.Example2;
+
+
+                    hienThi();
+
                 }
                 else
                 {
@@ -85,10 +94,13 @@ namespace Dic_AppTest
                     txtNghia.Text = result.English;
                     txtVidu1.Text = result.Example1;
                     txtVidu2.Text = result.Example2;
+
+                    hienThi();
+
                 }
 
             });
-            hienThi();
+            
 
         }
         private void hienThi()

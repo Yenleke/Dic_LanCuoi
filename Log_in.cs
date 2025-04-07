@@ -40,7 +40,19 @@ namespace Dic_AppTest
             close = false;
             this.Close();
         }
+       
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                btLogin.PerformClick(); // Giả lập nhấn nút Login
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        
 
+
+        }
         private void Log_in_Paint(object sender, PaintEventArgs e)
         {
             LinearGradientBrush linearGradientBrush = new LinearGradientBrush(this.ClientRectangle, Color.LightSteelBlue, Color.White, 90);

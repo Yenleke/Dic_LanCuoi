@@ -10,7 +10,7 @@ namespace Dic_AppTest
 {
     public partial class History : Form
     {
-        private string historyFilePath = "search_history.xlsx";
+        private string historyFilePath = "search_history.xlsx"; // lấy file excel từ Main
         private BindingSource bindingSource = new BindingSource();
 
         public History()
@@ -30,7 +30,7 @@ namespace Dic_AppTest
         {
             try
             {
-                if (!File.Exists(historyFilePath))
+                if (!File.Exists(historyFilePath)) // không tìm thấy file thì thoát 
                     return;
 
                 FileInfo file = new FileInfo(historyFilePath);
@@ -38,8 +38,8 @@ namespace Dic_AppTest
 
                 using (var package = new ExcelPackage(file))
                 {
-                    var worksheet = package.Workbook.Worksheets[0];
-                    int rowCount = worksheet.Dimension?.Rows ?? 0;
+                    var worksheet = package.Workbook.Worksheets[0];// lấy sheet đầu tiên
+                    int rowCount = worksheet.Dimension?.Rows ?? 0; // số dòng hiện có
 
                     List<string> words = new List<string>();
                     for (int row = 1; row <= rowCount; row++)
@@ -47,12 +47,17 @@ namespace Dic_AppTest
                         string word = worksheet.Cells[row, 1].Value?.ToString();
                         if (!string.IsNullOrEmpty(word))
                         {
-                            words.Add(word);
+                            if (word == "Type here to search...")
+                            {
+                                continue;
+                            }
+                            else words.Add(word);
                         }
+                        
                     }
 
-                    bindingSource.DataSource = words;
-                    bindingSource.ResetBindings(false);
+                    bindingSource.DataSource = words; 
+                    bindingSource.ResetBindings(false); // reset lại giao diện listbox
                 }
             }
             catch (Exception ex)
@@ -97,16 +102,19 @@ namespace Dic_AppTest
                     int rowCount = worksheet.Dimension?.Rows ?? 0;
                     List<string> words = new List<string>();
 
+                    // lưu lại list words trước khi xóa
                     for (int row = 1; row <= rowCount; row++)
                     {
                         string word = worksheet.Cells[row, 1].Value?.ToString();
-                        if (!string.IsNullOrEmpty(word) && word != wordToRemove)
+                        if (!string.IsNullOrEmpty(word) && word != wordToRemove) // ô kh trống và kh phải từ cần xóa
                         {
                             words.Add(word);
                         }
                     }
 
                     worksheet.Cells.Clear(); // Xóa nội dung, không làm mất cấu trúc bảng
+
+                    //sau khi xóa thêm lại từ vào listbox
                     for (int i = 0; i < words.Count; i++)
                     {
                         worksheet.Cells[i + 1, 1].Value = words[i];
