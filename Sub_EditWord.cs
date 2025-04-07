@@ -14,14 +14,14 @@ namespace Dic_AppTest
 {
     public partial class Sub_EditWord : Form
     {       
-        string excelpath = "dictionary_fully_unique_sentences.xlsx";
+        string excelpath = "dictionary_fully_unique_sentences.xlsx"; //lấy file excel
         bool isAnhViet = true;
-        private FrmMain frmMain;
+        private FrmMain frmMain;//tham chiếu đối tượng frmMain
 
         public Sub_EditWord(FrmMain frmMain)
         {
             InitializeComponent();
-            this.frmMain = frmMain;
+            this.frmMain = frmMain; // để lấy diction từ frmMain
             ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial;
             new Set(txtNhap, "Type here to search...");
     }
@@ -36,7 +36,7 @@ namespace Dic_AppTest
         private void Sub_EditWord_Load(object sender, EventArgs e)
         {
             SetupAutoComplete();
-            frmMain.ImportExcel(excelpath);
+            frmMain.ImportExcel(excelpath);//import file excel đó
         }
         public void SetupAutoComplete()
         {
@@ -65,7 +65,13 @@ namespace Dic_AppTest
         private void btSearch_Click_1(object sender, EventArgs e)
         {
 
+            string searchText = txtNhap.Text;
+            //truyền vào txtNhap, isAnhViet của Edit, từ đó tìm kiếm result
+
+
+
             frmMain.Search(txtNhap.Text, isAnhViet, (result) =>
+
             {
                 if (isAnhViet)
                 {
@@ -75,7 +81,10 @@ namespace Dic_AppTest
                     txtNghia.Text = result.Meaning;
                     txtVidu1.Text = result.Example1;
                     txtVidu2.Text = result.Example2;
+
+
                     hienThi();
+
                 }
                 else
                 {
@@ -85,7 +94,9 @@ namespace Dic_AppTest
                     txtNghia.Text = result.English;
                     txtVidu1.Text = result.Example1;
                     txtVidu2.Text = result.Example2;
+
                     hienThi();
+
                 }
 
             });
@@ -113,13 +124,18 @@ namespace Dic_AppTest
 
 private void SaveToExcel()
         {
-            FileInfo file = new FileInfo(excelpath);
+            FileInfo file = new FileInfo(excelpath);//đường dẫn đén file excel
             using (ExcelPackage package = file.Exists ? new ExcelPackage(file) : new ExcelPackage())
-            {
+            {// dùng EEPlus mở file excel
+                //using đảm bảo tài nguyên được giải phóng sau khi dùng
+                //nếu file đã tồn tại -> mở file, nếu chưa tồn tại -> tạo file
                 ExcelWorksheet worksheet = package.Workbook.Worksheets.Count > 0 ?
                     package.Workbook.Worksheets[0] : package.Workbook.Worksheets.Add("TuDien");
+                //kiểm tra excel có sheet nào chưa, lấy sheet đầu tiên, nếu chưa có tạo sheet
 
-                // Kiểm tra tiêu đề
+
+
+                // Kiểm tra tiêu đề, nếu chưa có tạo tiêu đề
                 if (worksheet.Dimension == null || worksheet.Dimension.Rows == 0)
                 {
                     worksheet.Cells[1, 1].Value = "Từ vựng";
@@ -131,6 +147,8 @@ private void SaveToExcel()
                 }
 
                 // Lấy số dòng hiện có trong sheet
+                //?.Rows tránh lỗi null nếu chưa có dữ liệu
+                //?? 0 nếu là null thì gán là 0
                 int rowCount = worksheet.Dimension?.Rows ?? 0;
                 bool found = false;
 
@@ -140,13 +158,14 @@ private void SaveToExcel()
                     string wordInCell = worksheet.Cells[row, 1].Value?.ToString();
                     string meaningInCell = worksheet.Cells[row, 4].Value?.ToString();
 
-                    if ((isAnhViet && wordInCell == txtTuVung.Text) || (!isAnhViet && meaningInCell == txtNghia.Text))
-                    {
+                    if ((isAnhViet && wordInCell == txtNhap.Text) || (!isAnhViet && meaningInCell == txtNhap.Text))
+                    {// nếu anh viêt, tìm cột English trùng với txtTuVung
+                        //nếu việt anh, tìm cột Meaning với txtTuVung
                         // Cập nhật dữ liệu tại dòng tìm được
-                        worksheet.Cells[row, 1].Value = txtTuVung.Text;
+                        worksheet.Cells[row, 1].Value = isAnhViet ? txtTuVung.Text : txtNghia.Text;
                         worksheet.Cells[row, 2].Value = txtPhienAm.Text;
                         worksheet.Cells[row, 3].Value = txtTuloai.Text;
-                        worksheet.Cells[row, 4].Value = txtNghia.Text;
+                        worksheet.Cells[row, 4].Value = isAnhViet ? txtNghia.Text : txtTuVung.Text;
                         worksheet.Cells[row, 5].Value = txtVidu1.Text;
                         worksheet.Cells[row, 6].Value = txtVidu2.Text;
                         found = true;
@@ -171,19 +190,23 @@ private void SaveToExcel()
             try
             {
 
-
+                // check đảm bảo txtTuVung và nghĩa không trống
                 if (string.IsNullOrWhiteSpace(txtTuVung.Text) || string.IsNullOrWhiteSpace(txtNghia.Text))
                 {
                     MessageBox.Show("Vui lòng nhập đầy đủ từ vựng và nghĩa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
-                }
-                string tuVung = txtTuVung.Text.Trim();
+                } //xóa khoảng trắng đầu cuối
+                string tuVung = txtNhap.Text.Trim();
                 string nghia = txtNghia.Text.Trim();
                 string phienAm = txtPhienAm.Text.Trim();
                 string loaiTu = txtTuloai.Text.Trim();
                 string viDu1 = txtVidu1.Text.Trim();
                 string viDu2 = txtVidu2.Text.Trim();
-                var existingWord = frmMain.diction.FirstOrDefault(d => isAnhViet ? d.English == tuVung : d.Meaning == nghia);
+
+                //kiểm tra xem từ có tồn tại trong diction không
+                //nếu anh việt thì kiếm cột english theo txtTuVung, ngược lại thì kiếm cột English theo nghĩa 
+                var existingWord = frmMain.diction.FirstOrDefault(d => isAnhViet ? d.English == tuVung : d.English == nghia);
+                
                 if (existingWord != null)
                 {
 
