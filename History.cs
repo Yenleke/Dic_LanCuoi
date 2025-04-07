@@ -47,8 +47,13 @@ namespace Dic_AppTest
                         string word = worksheet.Cells[row, 1].Value?.ToString();
                         if (!string.IsNullOrEmpty(word))
                         {
-                            words.Add(word);
+                            if (word == "Type here to search...")
+                            {
+                                continue;
+                            }
+                            else words.Add(word);
                         }
+                        
                     }
 
                     bindingSource.DataSource = words; 
